@@ -11,6 +11,9 @@ typedef struct	s_env
 	void	*win;
 	void	*img;
 	void	*img_str;
+	int		bpp;
+	int		s_l;
+	int		end;
 }				t_env;
 
 #endif
