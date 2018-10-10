@@ -1,8 +1,8 @@
 NAME = wolf3D
 
-SRC = src/*.c
+SRC = src/ft_trace_seg.c src/main.c src/put_pxl_img.c
 
-HEADER = libft/libft.h include/*.h
+HEADER = libft/libft.h include/wolf3d.h
 
 OBJ = $(SRC:.c=.o)
 
@@ -18,9 +18,9 @@ $(NAME) : $(OBJ)
 	make -C minilibx
 	@gcc -Wall -Werror -Wextra -I minilibx/ minilibx/libmlx.a \
 		-framework OpenGL -framework AppKit \
-		-$(HEADER) $(SRC) libft/libft.a
+		$(HEADER) $(SRC) libft/libft.a
 	@mv a.out $(NAME)
-	@echo "${COLOR}all : wolf3D created √${COLOR_OFF}"
+	@echo "${COLOR}all : Wolf3D created √${COLOR_OFF}"
 
 ./%.o : src/%.c
 	@gcc -Wall -Werror -Wextra -I minilibx/ minilix/libmlx.a\
@@ -31,11 +31,11 @@ clean :
 	make -C libft clean
 	make -C minilibx clean
 	@rm -rf $(OBJ)
-	@echo "${COLOR} wolf3D clean √${COLOR_OFF}"
+	@echo "${COLOR}Wolf3D clean √${COLOR_OFF}"
 
 fclean : clean
 	make -C libft fclean
 	@rm -rf $(NAME)
-	@echo "${COLOR} wolf3D fclean √${COLOR_OFF}"
+	@echo "${COLOR}Wolf3D fclean √${COLOR_OFF}"
 
 re : fclean all
