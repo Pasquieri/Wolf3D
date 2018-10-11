@@ -1,6 +1,6 @@
 NAME = wolf3D
 
-SRC = src/ft_trace_seg.c src/main.c src/put_pxl_img.c
+SRC = src/ft_trace_seg.c src/main.c src/put_pxl_img.c src/quadrillage.c
 
 HEADER = libft/libft.h include/wolf3d.h
 

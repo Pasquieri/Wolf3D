@@ -21,9 +21,13 @@ typedef struct	s_env
 	int		bpp;
 	int		s_l;
 	int		end;
+	int		x;
+	int		y;
+	int		coef;
 }				t_env;
 
 void	put_pxl_img(t_env *env, float x, float y);
 int		ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
+void	quadrillage(t_env *env);
 
 #endif
