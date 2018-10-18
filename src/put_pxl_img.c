@@ -1,6 +1,6 @@
 #include "../include/wolf3d.h"
 
-void	put_pxl_img(t_env *env, float x, float y, int color)
+void	put_pxl_img(t_env *env, int x, int y, int color)
 {
 	int	i;
 
@@ -13,8 +13,8 @@ void	put_pxl_img(t_env *env, float x, float y, int color)
 	}
 	else if (color == 1)
 	{
-		env->img_str[i] = (char)100;
-		env->img_str[i + 1] = (char)100;
-		env->img_str[i + 2] = (char)70;
+		env->img_str[i] = (char)213;
+		env->img_str[i + 1] = (char)170;
+		env->img_str[i + 2] = (char)10;
 	}
 }

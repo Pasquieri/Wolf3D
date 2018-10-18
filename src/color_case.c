@@ -2,7 +2,7 @@
 
 void	color_case(t_env *env, t_map map)
 {
-	int	i;
+	int		i;
 	float	x;
 	float	y;
 	float	tmp_y;
@@ -21,7 +21,8 @@ void	color_case(t_env *env, t_map map)
 				tmp_x = x + env->coef;
 				while (x < tmp_x)
 				{
-					put_pxl_img(env, x, y, 1);
+					mlx_pixel_put(env->mlx, env->win, x, y, 0xFFAFFF);
+					//put_pxl_img(env, x, y, 1);
 					x++;
 				}
 				y++;

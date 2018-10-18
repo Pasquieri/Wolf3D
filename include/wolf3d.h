@@ -34,7 +34,7 @@ typedef struct	s_env
 	int		map;
 }				t_env;
 
-void	put_pxl_img(t_env *env, float x, float y, int color);
+void	put_pxl_img(t_env *env, int x, int y, int color);
 int		ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void	quadrillage(t_env *env);
 void	init_map(t_map *map);
