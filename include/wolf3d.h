@@ -4,6 +4,8 @@
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
 # include <math.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 typedef struct	s_coord
 {
@@ -28,8 +30,11 @@ typedef struct	s_env
 	int		bpp;
 	int		s_l;
 	int		end;
+
 	int		x;
 	int		y;
+	int		**tab;
+
 	int		coef;
 	int		map;
 }				t_env;

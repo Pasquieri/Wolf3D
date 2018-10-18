@@ -2,9 +2,8 @@
 
 static void	create_img(t_env *env)
 {
-	env->img = mlx_new_image(env->mlx, 1000, 700);
 	env->img_str = mlx_get_data_addr(env->img, &env->bpp, &env->s_l, &env->end);
-	mlx_destroy_image(env->mlx, env->img);
+	mlx_destroy_image(env->mlx, env->img); // pourquoi ??
 }
 
 static int	deal_key(int key, t_env *env)
@@ -31,6 +30,7 @@ int			main(int ac, char **av)
 	(void)av;
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, 1500, 1100, "Wolf3D");
+	env.img = mlx_new_image(env.mlx, 1000, 700);
 	create_img(&env);
 	init_map(&map);
 	init_env(&env, &map);
