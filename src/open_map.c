@@ -48,7 +48,7 @@ void	open_map(char *map, t_env *env)
 	(void)env;
 	line1 = NULL;
 	if (!(fd = open(map, O_RDONLY)))
-		exit(0);
+		exit (0);
 	get_next_line(fd, &line1);
 	env->x = ft_atoi(line1);
 	i = 0;

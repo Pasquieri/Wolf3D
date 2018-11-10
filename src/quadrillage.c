@@ -8,8 +8,8 @@ void	quadrillage(t_env *env)
 	t_coord	coord2;
 	t_coord	coord3;
 
-	j = 1;
-	while (j <= env->y + 1)
+	j = 0;
+	while (j <= env->y)
 	{
 		coord1.y = j * env->coef;
 		coord2.y = j * env->coef;
@@ -20,7 +20,7 @@ void	quadrillage(t_env *env)
 			coord2.x = (i + 1) * env->coef;
 			if ((i + 1) <= env->x + 1)
 				ft_trace_seg(env, coord1, coord2);
-			if (j > 1)
+			if (j > 0)
 			{
 				coord3.x = coord1.x;
 				coord3.y = coord1.y - env->coef;
