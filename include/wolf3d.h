@@ -31,6 +31,12 @@ typedef struct	s_env
 	int		s_l;
 	int		end;
 
+	void	*img2;
+	char	*img_str2;
+	int		bpp2;
+	int		s_l2;
+	int		end2;
+
 	int		x;
 	int		y;
 	int		**tab;

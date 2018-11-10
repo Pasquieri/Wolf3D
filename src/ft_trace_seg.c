@@ -11,8 +11,7 @@ static int	cas_1(t_env *env, t_coord coord1, t_coord coord2)
 	dy = 2 * fabs(coord2.y - coord1.y);
 	while (coord1.x <= coord2.x)
 	{
-		//put_pxl_img(env, coord1.x, coord1.y, 0);
-		mlx_pixel_put(env->mlx, env->win, coord1.x, coord1.y, 0xFFFFFF);
+		put_pxl_img(env, coord1.x, coord1.y, 0);
 		coord1.x++;
 		e -= dy;
 		while (e < 0)
@@ -21,8 +20,7 @@ static int	cas_1(t_env *env, t_coord coord1, t_coord coord2)
 				coord1.y++;
 			else if (coord1.y > coord2.y)
 				coord1.y--;
-			//put_pxl_img(env, coord1.x, coord1.y, 0);
-			mlx_pixel_put(env->mlx, env->win, coord1.x, coord1.y, 0xFFFFFF);
+			put_pxl_img(env, coord1.x, coord1.y, 0);
 			e += dx;
 		}
 	}
@@ -40,8 +38,7 @@ static int	cas_2(t_env *env, t_coord coord1, t_coord coord2)
 	dy = 2 * fabs(coord2.y - coord1.y);
 	while (coord1.x >= coord2.x)
 	{
-		//put_pxl_img(env, coord1.x, coord1.y, 0);
-		mlx_pixel_put(env->mlx, env->win, coord1.x, coord1.y, 0xFFFFFF);
+		put_pxl_img(env, coord1.x, coord1.y, 0);
 		coord1.x--;
 		e -= dy;
 		while (e < 0)
@@ -50,8 +47,7 @@ static int	cas_2(t_env *env, t_coord coord1, t_coord coord2)
 				coord1.y++;
 			else if (coord1.y > coord2.y)
 				coord1.y--;
-			//put_pxl_img(env, coord1.x, coord1.y, 0);
-			mlx_pixel_put(env->mlx, env->win, coord1.x, coord1.y, 0xFFFFFF);
+			put_pxl_img(env, coord1.x, coord1.y, 0);
 			e += dx;
 		}
 	}
@@ -64,8 +60,7 @@ static int	cas_3(t_env *env, t_coord coord1, t_coord coord2)
 	{
 		while (coord1.y <= coord2.y)
 		{
-			//put_pxl_img(env, coord1.x, coord1.y, 0);
-			mlx_pixel_put(env->mlx, env->win, coord1.x, coord1.y, 0xFFFFFF);
+			put_pxl_img(env, coord1.x, coord1.y, 0);
 			coord1.y++;
 		}
 	}
@@ -73,8 +68,7 @@ static int	cas_3(t_env *env, t_coord coord1, t_coord coord2)
 	{
 		while (coord1.y >= coord2.y)
 		{
-			//put_pxl_img(env, coord1.x, coord1.y, 0);
-			mlx_pixel_put(env->mlx, env->win, coord1.x, coord1.y, 0xFFFFFF);
+			put_pxl_img(env, coord1.x, coord1.y, 0);
 			coord1.y--;
 		}
 	}

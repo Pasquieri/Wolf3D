@@ -64,7 +64,7 @@ void	open_map(char *map, t_env *env)
 	fill_tab(fd, env);
 }
 
-int	main(int argc,char **argv)
+/*int	main(int argc,char **argv)
 {
 	t_env env;
 	int		i;
@@ -72,10 +72,12 @@ int	main(int argc,char **argv)
 
 	j = 0;
 	i = 0;
-	(void)argc;
+	if (argc != 2)
+		return (0);
 	open_map(argv[1], &env);
 	while (i < 10)
 	{
+		j = 0;
 		while (j < 10)
 		{
 			printf("%d   ", env.tab[i][j]);
@@ -85,4 +87,4 @@ int	main(int argc,char **argv)
 		i++;
 	}
 	return (0);
-}
+}*/
