@@ -23,9 +23,10 @@ int			main(int ac, char **av)
 	{
 		env.mlx = mlx_init();
 		env.win = mlx_new_window(env.mlx, 1200, 870, "Wolf3D");
-		env.img = mlx_new_image(env.mlx, 1200, 900);
+		env.img = mlx_new_image(env.mlx, 1200, 870);
 		/******* img 1 avec le labyrinthe *********/
 		env.img_str = mlx_get_data_addr(env.img, &env.bpp, &env.s_l, &env.end);
+		color_white(&env); //colorie tout en blanc img1
 /* ================================================================== */
                           // Mini Map //
 		env.img2 = mlx_new_image(env.mlx, 200, 200);
@@ -35,8 +36,9 @@ int			main(int ac, char **av)
 		env.coef = 300 / (env.x + env.y);
 		color_case(&env);
 		/******* color les cases de la mini map ********/
-		quadrillage(&env);
+//		quadrillage(&env);
 		/******* quadrillage de la mini map ********/
+		fleche(&env);
 
 /* ================================================================== */
 		mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);

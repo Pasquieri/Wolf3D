@@ -14,6 +14,16 @@ typedef struct	s_coord
 	float	z;
 }				t_coord;
 
+typedef struct	s_perso
+{
+	t_coord	v_i;
+	t_coord	v_j;
+	t_coord	a; // centre fleche
+	t_coord	b; // coin gauche
+	t_coord	c; // bout de la fleche
+	t_coord	d; // coin droite
+}				t_perso;
+
 typedef struct	s_env
 {
 	void	*mlx;
@@ -31,6 +41,7 @@ typedef struct	s_env
 	int		end2;
 	int		coef;
 
+	float		rot_fleche;
 	int		x;
 	int		y;
 	int		**tab;
@@ -41,5 +52,7 @@ int		ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void	quadrillage(t_env *env);
 void	color_case(t_env *env);
 void	open_map(char *map, t_env *env);
+void	color_white(t_env *env);
+void	fleche(t_env *env);
 
 #endif
