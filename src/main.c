@@ -32,7 +32,7 @@ int			main(int ac, char **av)
 		/******* img 2 mini map en haut a droite *********/
 		env.img_str2 = mlx_get_data_addr(env.img2, &env.bpp2, &env.s_l2, &env.end2);
 		open_map(av[1], &env);
-		env.coef = 250 / (env.x + env.y);
+		env.coef = 300 / (env.x + env.y);
 		color_case(&env);
 		/******* color les cases de la mini map ********/
 		quadrillage(&env);
@@ -40,7 +40,7 @@ int			main(int ac, char **av)
 
 /* ================================================================== */
 		mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);
-		mlx_put_image_to_window(env.mlx, env.win, env.img2, 1020, 40);
+		mlx_put_image_to_window(env.mlx, env.win, env.img2, 1000, 20);
 
 		mlx_hook(env.win, 2, 3, deal_key, &env);
 	//	mlx_hook(env.win, 4, 1L << 2, button_press, &env);
