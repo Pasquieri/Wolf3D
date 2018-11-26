@@ -42,6 +42,9 @@ typedef struct	s_env
 	int		coef;
 
 	float		rot_fleche;
+	t_perso		rot;
+	float		rot_x;
+	float		rot_y;
 	int		x;
 	int		y;
 	int		**tab;
@@ -54,5 +57,6 @@ void	color_case(t_env *env);
 void	open_map(char *map, t_env *env);
 void	color_white(t_env *env);
 void	fleche(t_env *env);
+void	rotation(t_env *env);
 
 #endif

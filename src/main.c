@@ -36,7 +36,7 @@ int			main(int ac, char **av)
 		env.coef = 300 / (env.x + env.y);
 		color_case(&env);
 		/******* color les cases de la mini map ********/
-//		quadrillage(&env);
+		quadrillage(&env);
 		/******* quadrillage de la mini map ********/
 		fleche(&env);
 

@@ -13,7 +13,7 @@ void	put_pxl_img(t_env *env, int x, int y, int color)
 	}
 	else if (color == 1)
 	{
-		env->img_str2[i] = (char)213;
+		env->img_str2[i] = (char)113;
 		env->img_str2[i + 1] = (char)170;
 		env->img_str2[i + 2] = (char)10;
 	}
