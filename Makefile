@@ -1,7 +1,8 @@
 NAME = wolf3D
 
 SRC = src/ft_trace_seg.c src/main.c src/put_pxl_img.c src/quadrillage.c\
-	  src/color_case.c src/open_map.c src/color_white.c src/fleche.c src/rotation.c
+	  src/color_case.c src/open_map.c src/color_white.c src/fleche.c \
+	  src/rotation.c src/cercle.c
 
 HEADER = libft/libft.h include/wolf3d.h
 

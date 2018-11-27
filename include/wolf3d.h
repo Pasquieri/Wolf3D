@@ -14,10 +14,15 @@ typedef struct	s_coord
 	float	z;
 }				t_coord;
 
-typedef struct	s_perso
+typedef struct	s_cercle
 {
-	t_coord	v_i;
-	t_coord	v_j;
+	int	rayon;
+	int	color;
+	t_coord	coord;
+}				t_cercle;
+
+typedef struct	s_perso        //structure de la fleche
+{
 	t_coord	a; // centre fleche
 	t_coord	b; // coin gauche
 	t_coord	c; // bout de la fleche
@@ -41,10 +46,11 @@ typedef struct	s_env
 	int		end2;
 	int		coef;
 
-	float		rot_fleche;
-	t_perso		rot;
-	float		rot_x;
-	float		rot_y;
+	float		rot_fleche;//
+	t_perso		rot;//
+	float		rot_x;//
+	float		rot_y; //
+
 	int		x;
 	int		y;
 	int		**tab;
@@ -58,5 +64,6 @@ void	open_map(char *map, t_env *env);
 void	color_white(t_env *env);
 void	fleche(t_env *env);
 void	rotation(t_env *env);
+void	cercle(t_env *env, t_cercle param);
 
 #endif
