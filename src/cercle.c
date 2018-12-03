@@ -20,11 +20,11 @@ void		cercle(t_env *env, t_cercle param)
 	m = 5 - 4 * param.rayon;
 	while (x <= y)
 	{
-	//	verif_mur(env, x+param.coord.x, -y+param.coord.y, param.color); //1
-	//	verif_mur(env, y+param.coord.x, -x+param.coord.y, param.color); //2
+		verif_mur(env, x+param.coord.x, -y+param.coord.y, param.color); //1
+		verif_mur(env, y+param.coord.x, -x+param.coord.y, param.color); //2
 	//	verif_mur(env, y+param.coord.x, x+param.coord.y, param.color); //3
 	//	verif_mur(env, x+param.coord.x, y+param.coord.y, param.color); //4
-		verif_mur(env, -x+param.coord.x, y+param.coord.y, param.color); //5
+	//	verif_mur(env, -x+param.coord.x, y+param.coord.y, param.color); //5
 	//	verif_mur(env, -y+param.coord.x, x+param.coord.y, param.color); //6
 	//	verif_mur(env, -y+param.coord.x, -x+param.coord.y, param.color); //7
 	//	verif_mur(env, -x+param.coord.x, -y+param.coord.y, param.color); //8

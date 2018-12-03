@@ -46,6 +46,19 @@ typedef struct	s_env
 	int		end2;
 	int		coef;
 
+	int		hauteur_mur;
+	int		hauteur_cam;
+	int		angle_cam;
+	int		champs_visu;
+	int		pos_x_cam;
+	int		pos_y_cam;
+	int		screen_x;
+	int		screen_y;
+	int		centre_ecran_x;
+	int		centre_ecran_y;
+	int		d_cam_ecran;
+	int		angle_ray_cons;
+
 	float		rot_fleche;//
 	t_perso		rot;//
 	float		rot_x;//
@@ -65,5 +78,7 @@ void	color_white(t_env *env);
 void	fleche(t_env *env);
 void	rotation(t_env *env);
 void	cercle(t_env *env, t_cercle param);
+void	init_env(t_env *env);
+int		adn(int xi, int yi, int xf, int yf, t_env *env);
 
 #endif

@@ -22,6 +22,7 @@ int			main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		init_env(&env);
 		env.mlx = mlx_init();
 		env.win = mlx_new_window(env.mlx, 1200, 870, "Wolf3D");
 		env.img = mlx_new_image(env.mlx, 1200, 870);
@@ -30,7 +31,7 @@ int			main(int ac, char **av)
 		color_white(&env); //colorie tout en blanc img1
 /* ================================================================== */
                           // Mini Map //
-		env.img2 = mlx_new_image(env.mlx, 400, 400);
+		env.img2 = mlx_new_image(env.mlx, 320, 200);
 		/******* img 2 mini map en haut a droite *********/
 		env.img_str2 = mlx_get_data_addr(env.img2, &env.bpp2, &env.s_l2, &env.end2);
 		open_map(av[1], &env);
@@ -56,6 +57,9 @@ int			main(int ac, char **av)
 			cercle(&env, param_cercle);
 			param_cercle.rayon--;
 		}
+		printf("%d\n",adn(20,20,65,60,&env));
+	//	printf("%d\n",adn(20,20,65,100,&env));
+	//	printf("%d\n",adn(65,100,20,20,&env));
 /* ================================================================== */
 		mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);
 		mlx_put_image_to_window(env.mlx, env.win, env.img2, 800, 20); //1000,20
