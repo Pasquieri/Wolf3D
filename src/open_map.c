@@ -24,18 +24,22 @@ static void	fill_tab(int fd, t_env *env)
 
 	i = 0;
 	line = NULL;
-	while (get_next_line(fd, &line) == 1)
+	while (get_next_line(fd, &line) == 1 && i < env->y)
 	{
 		j = 0;
 		tmp = ft_strsplit(line, ' ');
-		while (tmp[j])
+		//while (tmp[j])
+		while (j < env->x && tmp[j])
 		{
 			env->tab[i][j] = ft_atoi(tmp[j]);
 			free(tmp[j]);
+//			printf("b\n");
 			j++;
 		}
+//		printf("cc %d\n", i);
 		i++;
 	}
+//		printf("KKKKKKKKKK\n");
 	free(line);
 }
 
@@ -45,7 +49,6 @@ void	open_map(char *map, t_env *env)
 	char	*line1;
 	int		i;
 
-	(void)env;
 	line1 = NULL;
 	if (!(fd = open(map, O_RDONLY)))
 		exit (0);
@@ -61,7 +64,9 @@ void	open_map(char *map, t_env *env)
 	env->y = ft_atoi(line1);
 	free(line1);
 	malloc_tab(env);
+//	printf("e\n");
 	fill_tab(fd, env);
+//	printf("x : %d\ny : %d\n", env->x, env->y);
 }
 
 /*int	main(int argc,char **argv)

@@ -21,32 +21,28 @@ typedef struct	s_cercle
 	t_coord	coord;
 }				t_cercle;
 
-typedef struct	s_perso        //structure de la fleche
-{
-	t_coord	a; // centre fleche
-	t_coord	b; // coin gauche
-	t_coord	c; // bout de la fleche
-	t_coord	d; // coin droite
-}				t_perso;
-
 typedef struct	s_env
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
+	void	*img; // image1
 	char	*img_str;
 	int		bpp;
 	int		s_l;
 	int		end;
 
-	void	*img2;
+	void	*img2; // image2
 	char	*img_str2;
 	int		bpp2;
 	int		s_l2;
 	int		end2;
 	int		coef;
 
-	int		hauteur_mur;
+	int		x; // open_map
+	int		y;
+	int		**tab;
+
+	int		hauteur_mur; // raycasting
 	int		hauteur_cam;
 	int		angle_cam;
 	int		champs_visu;
@@ -58,27 +54,17 @@ typedef struct	s_env
 	int		centre_ecran_y;
 	int		d_cam_ecran;
 	int		angle_ray_cons;
-
-	float		rot_fleche;//
-	t_perso		rot;//
-	float		rot_x;//
-	float		rot_y; //
-
-	int		x;
-	int		y;
-	int		**tab;
 }				t_env;
 
-void	put_pxl_img(t_env *env, int x, int y, int color);
+void	open_map(char *map, t_env *env);
+void	init_env(t_env *env);
 int		ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void	quadrillage(t_env *env);
+void	put_pxl_img(t_env *env, int x, int y, int color);
 void	color_case(t_env *env);
-void	open_map(char *map, t_env *env);
 void	color_white(t_env *env);
-void	fleche(t_env *env);
-void	rotation(t_env *env);
+
 void	cercle(t_env *env, t_cercle param);
-void	init_env(t_env *env);
 int		adn(int xi, int yi, int xf, int yf, t_env *env);
 
 #endif

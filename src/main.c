@@ -40,29 +40,32 @@ int			main(int ac, char **av)
 		/******* color les cases de la mini map ********/
 		quadrillage(&env);
 		/******* quadrillage de la mini map ********/
-		//fleche(&env);
+
 		param_cercle.coord.x = 100;
 		param_cercle.coord.y = 100;
 		param_cercle.rayon = 30;
 		param_cercle.color = 2;
-		while (param_cercle.rayon >= 0)
+		while (param_cercle.rayon >= 0) // gros cercle : fov
 		{
 			cercle(&env, param_cercle);
 			param_cercle.rayon--;
 		}
+
 		param_cercle.rayon = 10;
 		param_cercle.color = 3;
-		while (param_cercle.rayon >= 0)
+		while (param_cercle.rayon >= 0) // petit cercle : perso
 		{
 			cercle(&env, param_cercle);
 			param_cercle.rayon--;
 		}
+
 		printf("%d\n",adn(20,20,65,60,&env));
 	//	printf("%d\n",adn(20,20,65,100,&env));
 	//	printf("%d\n",adn(65,100,20,20,&env));
+
 /* ================================================================== */
 		mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);
-		mlx_put_image_to_window(env.mlx, env.win, env.img2, 800, 20); //1000,20
+		mlx_put_image_to_window(env.mlx, env.win, env.img2, 850, 20); //1000,20
 
 		mlx_hook(env.win, 2, 3, deal_key, &env);
 	//	mlx_hook(env.win, 4, 1L << 2, button_press, &env);
