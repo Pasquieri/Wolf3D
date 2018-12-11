@@ -42,6 +42,15 @@ typedef struct	s_env
 	int		y;
 	int		**tab;
 
+	int		d_regard; //clara
+	int		perso_x;
+	int		perso_y;
+	int		champ_left;
+	int		champ_right;
+	int		nb_colonne;
+
+
+
 	int		hauteur_mur; // raycasting
 	int		hauteur_cam;
 	int		angle_cam;
@@ -64,6 +73,7 @@ void	put_pxl_img(t_env *env, int x, int y, int color);
 void	color_case(t_env *env);
 void	color_white(t_env *env);
 
+void	raycasting(t_env *env);
 void	cercle(t_env *env, t_cercle param);
 int		adn(int xi, int yi, int xf, int yf, t_env *env);
 

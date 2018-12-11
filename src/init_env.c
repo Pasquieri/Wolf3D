@@ -2,6 +2,15 @@
 
 void	init_env(t_env *env)
 {
+/************** Clara *************/
+	env->d_regard = 45;
+	env->perso_x = 100; // == param_cercle.coord.x (main)
+	env->perso_y = 100;
+	env->champ_left = env->d_regard + 30;
+	env->champ_right = env->d_regard - 30;
+	env->nb_colonne = 200;
+
+/************** ADN ***************/
 	env->hauteur_mur = 64;
 	env->hauteur_cam = env->hauteur_mur/2; // hauteur_mur / 2
 	env->champs_visu = 60; // angle de vue 60*
