@@ -49,6 +49,7 @@ typedef struct	s_env
 }				t_env;
 
 
+int		pars_init(int argc, char **argv, t_env *var_check);
 void	open_map(char *map, t_env *env);
 void	init_env(t_env *env);
 int		ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
