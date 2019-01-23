@@ -27,16 +27,16 @@ t_coord			intersection_horizontal(t_env *env)
 	y2 = env->perso_y;
 	coef_y = 1;
 	coef_x = 1;
-	if (env->d_regard > 0 && env->d_regard < 180)
+	if (env->angle > 0. && env->angle < 180.)
 		coef_y = -1;
-	if (env->d_regard > 180 && env->d_regard < 360)
+	if (env->angle > 180. && env->angle < 360.)
 		coef_x = -1;
 	while (ya < env->coef && x2 < lim && y2 < lim
 			&& (env->tab[(int)round(y2)
 				/ env->coef][(int)round(x2) / env->coef]) != 0)
 	{
 		y2 = y2 + coef_y;
-		x2 = env->perso_x + ((ya * coef_x) / tan(env->d_regard * M_PI / 180));
+		x2 = env->perso_x + ((ya * coef_x) / tan(env->angle * M_PI / 180));
 		if (verif_horizontal(y2, env) == 1)
 			ya = env->coef;
 		ya++;
@@ -73,16 +73,16 @@ t_coord			intersection_vertical(t_env *env)
 	y2 = env->perso_y;
 	coef_x = 1;
 	coef_y = 1;
-	if (env->d_regard > 90 && env->d_regard < 270)
+	if (env->angle > 90. && env->angle < 270.)
 		coef_x = -1;
-	if  (!(env->d_regard > 90 && env->d_regard < 270))
+	if  (!(env->angle > 90. && env->angle < 270.))
 		coef_y = -1;
 	while (xa < env->coef && x2 < lim && y2 < lim
 			&& (env->tab[(int)round(y2) 
 				/ env->coef][(int)round(x2) / env->coef]) != 0)
 	{
 		x2 = x2 + coef_x;
-		y2 = env->perso_y + ((xa * coef_y) * tan(env->d_regard * M_PI / 180));
+		y2 = env->perso_y + ((xa * coef_y) * tan(env->angle * M_PI / 180));
 		if (verif_vertical(x2, env) == 1)
 			xa = env->coef;
 		xa++;

@@ -6,10 +6,10 @@ static void	ft_round(t_coord *coord)
 	coord->y = round(coord->y);
 }
 
-int	detection_mur(t_env *env)
+double		detection_mur(t_env *env)
 {
-	float	xa;
-	float	ya;
+	double	xa;
+	double	ya;
 	t_coord	coord1;
 	t_coord	coord2;
 	int		coef_x;
@@ -17,7 +17,7 @@ int	detection_mur(t_env *env)
 	double	d;
 	t_coord	coord_perso; //
 
-	printf("d_regard : %d\n", env->d_regard); //
+	//printf("d_regard : %d\n", env->d_regard); //
 	coord_perso.x = env->perso_x; //
 	coord_perso.y = env->perso_y; //
 	init_var_hor(env, &ya, &xa, &coord1);
@@ -37,12 +37,16 @@ int	detection_mur(t_env *env)
 		coord2.y += (ya * coef_y);
 	}
 	ft_round(&coord2);
-	ft_trace_seg(env, coord_perso, coord1); //
-	ft_trace_seg(env, coord_perso, coord2); //
 	if (d < sqrt(pow(env->perso_x - coord2.x, 2) + pow(env->perso_y - coord2.y, 2)))
-		return (1);
+	{
+		ft_trace_seg(env, coord_perso, coord1); //
+		return (d);
+	}
 	else
-		return (2);
+	{
+		ft_trace_seg(env, coord_perso, coord2); //
+		return (sqrt(pow(env->perso_x - coord2.x, 2) + pow(env->perso_y - coord2.y, 2)));
+	}
 }
 
 /* renvoyer les coords de l'intersection avec le mur ?  + distance  ? */

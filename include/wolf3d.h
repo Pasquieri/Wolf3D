@@ -42,12 +42,15 @@ typedef struct	s_env
 	int		y;
 	int		**tab;
 
-	int		d_regard; //clara
+	int	d_regard; //clara
+	double	angle;
 	int		perso_x;
 	int		perso_y;
 	int		nb_colonne;
+	int		d_ecran;
+	int		h_mur;
+	int		h_regard;
 }				t_env;
-
 
 int		pars_init(int argc, char **argv, t_env *var_check);
 void	open_map(char *map, t_env *env);
@@ -59,13 +62,14 @@ void	clean_img(t_env *env);
 void	color_case(t_env *env);
 void	color_white(t_env *env);
 void	cercle(t_env *env, t_cercle param);
-int		detection_mur(t_env *env);
-void	init_var_hor(t_env *env, float *ya, float *xa, t_coord *coord1);
+double	detection_mur(t_env *env);
+void	init_var_hor(t_env *env, double *ya, double *xa, t_coord *coord1);
 int		coef_hor(t_env *env, int *coef_x, int *coef_y);
 int		verif_hor(t_env *env, t_coord *coord);
-void	init_var_ver(t_env *env, float *ya, float *xa, t_coord *coord2);
+void	init_var_ver(t_env *env, double *ya, double *xa, t_coord *coord2);
 int		coef_ver(t_env *env, int *coef_x, int *coef_y);
 int		verif_ver(t_env *env, t_coord *coord);
 t_coord	intersection_horizontal(t_env *env);
 t_coord	intersection_vertical(t_env *env);
+void	affichage_mur(t_env *env);
 #endif
