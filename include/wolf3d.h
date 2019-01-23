@@ -45,8 +45,6 @@ typedef struct	s_env
 	int		d_regard; //clara
 	int		perso_x;
 	int		perso_y;
-	int		champ_left;
-	int		champ_right;
 	int		nb_colonne;
 }				t_env;
 

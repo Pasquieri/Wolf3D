@@ -12,7 +12,5 @@ void	init_env(t_env *env)
 	env->perso_x = 5 * env->coef - env->coef / 2;
 	env->perso_y = 3 * env->coef - env->coef / 2;
 	// 5 & 3 sont les cases dans laquelle on place le perso des le depart
-	env->champ_left = env->d_regard + 30;
-	env->champ_right = env->d_regard - 30;
 	env->nb_colonne = 200;
 }
