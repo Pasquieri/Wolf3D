@@ -29,4 +29,10 @@ void	put_pxl_img(t_env *env, int x, int y, int color)
 		env->img_str2[i + 1] = (char)161;
 		env->img_str2[i + 2] = (char)255;
 	}
+	else if (color == 4)
+	{
+		env->img_str2[i] = (char)0;
+		env->img_str2[i + 1] = (char)0;
+		env->img_str2[i + 2] = (char)0;
+	}
 }

@@ -48,33 +48,25 @@ typedef struct	s_env
 	int		champ_left;
 	int		champ_right;
 	int		nb_colonne;
-
-
-
-	int		hauteur_mur; // raycasting
-	int		hauteur_cam;
-	int		angle_cam;
-	int		champs_visu;
-	int		pos_x_cam;
-	int		pos_y_cam;
-	int		screen_x;
-	int		screen_y;
-	int		centre_ecran_x;
-	int		centre_ecran_y;
-	int		d_cam_ecran;
-	int		angle_ray_cons;
 }				t_env;
+
 
 void	open_map(char *map, t_env *env);
 void	init_env(t_env *env);
 int		ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);
 void	quadrillage(t_env *env);
 void	put_pxl_img(t_env *env, int x, int y, int color);
+void	clean_img(t_env *env);
 void	color_case(t_env *env);
 void	color_white(t_env *env);
-
-void	raycasting(t_env *env);
 void	cercle(t_env *env, t_cercle param);
-int		adn(int xi, int yi, int xf, int yf, t_env *env);
-
+int		detection_mur(t_env *env);
+void	init_var_hor(t_env *env, float *ya, float *xa, t_coord *coord1);
+int		coef_hor(t_env *env, int *coef_x, int *coef_y);
+int		verif_hor(t_env *env, t_coord *coord);
+void	init_var_ver(t_env *env, float *ya, float *xa, t_coord *coord2);
+int		coef_ver(t_env *env, int *coef_x, int *coef_y);
+int		verif_ver(t_env *env, t_coord *coord);
+t_coord	intersection_horizontal(t_env *env);
+t_coord	intersection_vertical(t_env *env);
 #endif

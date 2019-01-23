@@ -13,12 +13,12 @@ void	quadrillage(t_env *env)
 	{
 		coord1.y = j * env->coef;
 		coord2.y = j * env->coef;
-		i = 1;
-		while (i <= env->x + 1)
+		i = 0;
+		while (i <= env->x)
 		{
 			coord1.x = i * env->coef;
 			coord2.x = (i + 1) * env->coef;
-			if ((i + 1) <= env->x + 1)
+			if ((i + 1) <= env->x)
 				ft_trace_seg(env, coord1, coord2);
 			if (j > 0)
 			{

@@ -2,7 +2,9 @@ NAME = wolf3D
 
 SRC = src/ft_trace_seg.c src/main.c src/put_pxl_img.c src/quadrillage.c\
 	  src/color_case.c src/open_map.c src/color_white.c \
-	  src/cercle.c src/init_env.c src/adn.c src/raycasting.c
+	  src/cercle.c src/init_env.c src/intersection.c\
+	  src/detection_mur.c src/clean_img.c src/detection_mur_horizontal.c\
+	  src/detection_mur_vertical.c
 
 HEADER = libft/libft.h include/wolf3d.h
 
@@ -25,7 +27,7 @@ $(NAME) : $(OBJ)
 	@echo "${COLOR}all : Wolf3D created √${COLOR_OFF}"
 
 ./%.o : src/%.c
-	@gcc -Wall -Werror -Wextra -I minilibx/ minilix/libmlx.a\
+	@gcc -Wall -Werror -Wextra -I minilibx/ minilibx/libmlx.a\
 		-framework OpenGL -framework AppKit \
 		-c $< -o $@ -I $(HEADER) Libft/libft.a
 
