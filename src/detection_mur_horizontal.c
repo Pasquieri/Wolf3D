@@ -5,7 +5,7 @@ void	init_var_hor(t_env *env, float *ya, float *xa, t_coord *coord1)
 	int	coef;
 
 	coef = 1;
-	if (env->d_regard == 0 || env->	d_regard == 180)
+	if (env->d_regard == 0 || env->d_regard == 180)
 	{
 		*ya = 0;
 		*xa = env->coef;

@@ -9,8 +9,8 @@ void	init_env(t_env *env)
 		env->d_regard = env->d_regard + 360;
 	//env->perso_x = 100;
 	//env->perso_y = 100;
-	env->perso_x = 5 * env->coef - env->coef / 2;
-	env->perso_y = 3 * env->coef - env->coef / 2;
+	env->perso_x = (env->perso_x + 1) * env->coef - env->coef / 2;
+	env->perso_y = (env->perso_y + 1) * env->coef - env->coef / 2;
 	// 5 & 3 sont les cases dans laquelle on place le perso des le depart
 	env->nb_colonne = 200;
 }
