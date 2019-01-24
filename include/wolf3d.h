@@ -37,6 +37,7 @@ typedef struct	s_env
 	int		s_l2;
 	int		end2;
 	int		coef;
+	int		map_on;
 
 	int		x; // open_map
 	int		y;

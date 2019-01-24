@@ -2,7 +2,7 @@
 
 void	init_env(t_env *env)
 {
-	env->d_regard = 0;
+	env->d_regard = 342;
 	env->d_regard = env->d_regard % 360;
 	if (env->d_regard < 0)
 		env->d_regard = env->d_regard + 360;
@@ -13,4 +13,5 @@ void	init_env(t_env *env)
 	env->d_ecran = (env->nb_colonne / 2) / tan(30 * M_PI / 180);
 	env->h_mur = env->coef;
 	env->h_regard = 870 / 2; // nb_ligne / 2 ==> moitie de l'ecran
+	env->map_on = 1;
 }

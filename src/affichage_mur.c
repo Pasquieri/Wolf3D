@@ -29,16 +29,18 @@ static void	affichage(double h_percue, t_env *env, int x)
 
 static double	verif_angle(double angle)
 {
-	if (angle < 0)
+	if (angle < 0.)
 	{
-		while (angle < 0)
-			angle = angle + 360;
+		while (angle < 0.)
+			angle = angle + 360.;
 	}
-	else if (angle > 360)
+	else if (angle > 360.)
 	{
-		while (angle > 360)
-			angle = angle - 360;
+		while (angle > 360.)
+			angle = angle - 360.;
 	}
+	if (angle == 360.)
+		angle = 0.;
 	return (angle);
 }
 
@@ -51,12 +53,13 @@ void	affichage_mur(t_env *env)
 
 	a = env->d_regard + 30;
 	a = verif_angle(a);
+	printf("angle :%f d_regard : %d\n", a, env->d_regard);
 	x = 0;
 	while (x <= env->nb_colonne)
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
-	//	printf("angle : %f\n", env->angle);
+		printf("angle : %f\n", env->angle);
 		dist = detection_mur(env);
 		//printf("Avant correction : %f, d_ecran %d\n",dist, env->d_ecran);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180); //abs (a -d_regard) ?
@@ -66,4 +69,5 @@ void	affichage_mur(t_env *env)
 		//printf("dist : %f, h_percue : %f, angle : %f, x : %d, h_mur / dist: %f\n",dist, h_percue, env->angle, x, env->h_mur / dist);
 		x++;
 	}
+	printf("test\n");
 }

@@ -16,4 +16,14 @@ void	clean_img(t_env *env)
 		}
 		y++;
 	}
+	y = 0;
+	x = 0;
+	while (y < (1200 * 870))
+	{
+		env->img_str[x] = (char)0;
+		env->img_str[x + 1] = (char)0;
+		env->img_str[x + 2] = (char)0;
+		x = x + 4;
+		y++;
+	}
 }

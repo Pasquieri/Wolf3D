@@ -12,7 +12,7 @@ void	color_white(t_env *env)
 		env->img_str[j] = (char)255;
 		env->img_str[j + 1] = (char)255;
 		env->img_str[j + 2] = (char)255;
-		j = j+4;
+		j = j + 4;
 		i++;
 	}
 }
