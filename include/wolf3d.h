@@ -51,6 +51,7 @@ typedef struct	s_env
 	int		d_ecran;
 	int		h_mur;
 	int		h_regard;
+	int		key_tab[4][4];
 }				t_env;
 
 int		pars_init(int argc, char **argv, t_env *var_check);
@@ -73,4 +74,5 @@ int		verif_ver(t_env *env, t_coord *coord);
 t_coord	intersection_horizontal(t_env *env);
 t_coord	intersection_vertical(t_env *env);
 void	affichage_mur(t_env *env);
+void	deplacements(int key, t_env *env);
 #endif

@@ -17,7 +17,6 @@ double		detection_mur(t_env *env)
 	double	d;
 	t_coord	coord_perso; //
 
-	//printf("d_regard : %d\n", env->d_regard); //
 	coord_perso.x = env->perso_x; //
 	coord_perso.y = env->perso_y; //
 	init_var_hor(env, &ya, &xa, &coord1);
@@ -48,5 +47,3 @@ double		detection_mur(t_env *env)
 		return (sqrt(pow(env->perso_x - coord2.x, 2) + pow(env->perso_y - coord2.y, 2)));
 	}
 }
-
-/* renvoyer les coords de l'intersection avec le mur ?  + distance  ? */

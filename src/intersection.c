@@ -1,5 +1,12 @@
 #include "../include/wolf3d.h"
 
+static int	verif_lim(float x2, float y2)
+{
+	if (x2 < 0. || y2 < 0.)
+		return (1);
+	return (0);
+}
+
 static int	verif_horizontal(float y2, t_env *env)
 {
 	int	j;
@@ -38,6 +45,8 @@ t_coord			intersection_horizontal(t_env *env)
 		y2 = y2 + coef_y;
 		x2 = env->perso_x + ((ya * coef_x) / tan(env->angle * M_PI / 180));
 		if (verif_horizontal(y2, env) == 1)
+			ya = env->coef;
+		if (verif_lim(x2, y2) == 1)
 			ya = env->coef;
 		ya++;
 	}
@@ -84,6 +93,8 @@ t_coord			intersection_vertical(t_env *env)
 		x2 = x2 + coef_x;
 		y2 = env->perso_y + ((xa * coef_y) * tan(env->angle * M_PI / 180));
 		if (verif_vertical(x2, env) == 1)
+			xa = env->coef;
+		if (verif_lim(x2, y2) == 1)
 			xa = env->coef;
 		xa++;
 	}

@@ -58,14 +58,16 @@ int		verif_hor(t_env *env, t_coord *coord)
 	}
 	i = round(coord->x) / env->coef;
 	j = (round(coord->y)) / env->coef;
-	if (env->tab[j][i] == 0)
-		return (1);
-	j = (round(coord->y) + 1) / env->coef;
-	if (env->tab[j][i] == 0)
-		return (1);
-	j = (round(coord->y) - 1) / env->coef;
-	if (env->tab[j][i] == 0)
-		return (1);
-	else
-		return (0);
+	if (i < env->x && j < env->x)
+	{
+		if (env->tab[j][i] == 0)
+			return (1);
+		j = (round(coord->y) + 1) / env->coef;
+		if (env->tab[j][i] == 0)
+			return (1);
+		j = (round(coord->y) - 1) / env->coef;
+		if (env->tab[j][i] == 0)
+			return (1);
+	}
+	return (0);
 }

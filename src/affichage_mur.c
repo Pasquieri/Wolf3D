@@ -59,7 +59,7 @@ void	affichage_mur(t_env *env)
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
-		printf("angle : %f\n", env->angle);
+	//	printf("angle : %f\n", env->angle);
 		dist = detection_mur(env);
 		//printf("Avant correction : %f, d_ecran %d\n",dist, env->d_ecran);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180); //abs (a -d_regard) ?
