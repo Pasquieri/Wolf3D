@@ -6,7 +6,6 @@ static int	deal_key(int key, t_env *env)
 
 	if (key == 53)
 		exit(0);
-	printf("%d\n", key);
 	if (key == 69 ||key == 27 || key == 24 || key == 78 || (key >= 123 && key <= 126) || key == 46)
 	{
 		if (key == 69 || key == 27)
@@ -17,21 +16,7 @@ static int	deal_key(int key, t_env *env)
 		if (env->d_regard < 0)
 			env->d_regard = env->d_regard + 360;
 		if (key >= 123 && key <= 126)
-		{
-		/*	if (key == 123)
-				env->perso_x--; // par pixel
-				//env->perso_x -= env->coef; //case par case
-			else if (key == 124)
-				env->perso_x++;
-				//env->perso_x += env->coef;
-			else if (key == 125)
-				env->perso_y++;
-				//env->perso_y += env->coef;
-			else if (key == 126)
-				env->perso_y--;
-				//env->perso_y -= env->coef;*/
-			deplacements(key, env); // faire une fonction a part
-		}
+			deplacements(key, env);
 		clean_img(env);
 		color_case(env);
 		quadrillage(env);

@@ -53,20 +53,17 @@ void	affichage_mur(t_env *env)
 
 	a = env->d_regard + 30;
 	a = verif_angle(a);
-	printf("angle :%f d_regard : %d\n", a, env->d_regard);
+//	printf("angle :%f d_regard : %d\n", a, env->d_regard);
 	x = 0;
-	while (x <= env->nb_colonne)
+	while (x <= (env->nb_colonne))
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
 		dist = detection_mur(env);
-		//printf("Avant correction : %f, d_ecran %d\n",dist, env->d_ecran);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180); //abs (a -d_regard) ?
 		h_percue = env->d_ecran * (env->h_mur / dist); // 277 * 64 / dist
 		affichage(h_percue, env, x);
-		a = a - (60. / env->nb_colonne); // 60 = champ de vision && 320 = nb_colonne
-		//printf("dist : %f, h_percue : %f, angle : %f, x : %d, h_mur / dist: %f\n",dist, h_percue, env->angle, x, env->h_mur / dist);
+		a = a - (60. / (env->nb_colonne)); // 60 = champ de vision && 320 = nb_colonne
 		x++;
 	}
-	printf("test\n");
 }
