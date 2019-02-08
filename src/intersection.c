@@ -85,7 +85,8 @@ t_coord			intersection_vertical(t_env *env)
 	if (env->angle > 90. && env->angle < 270.)
 		coef_x = -1;
 	if  (!(env->angle > 90. && env->angle < 270.))
-		coef_y = -1;
+		coef_y = -1; //
+//	printf("\nxa : %d, lim : %d, x2 : %f, y2 : %f, coef_x :%d coef_y : %d env->angle : %f env->coef : %d\n", xa,lim, x2, y2, coef_x, coef_y, env->angle, env->coef);
 	while (xa < env->coef && x2 < lim && y2 < lim
 			&& (env->tab[(int)round(y2) 
 				/ env->coef][(int)round(x2) / env->coef]) != 0)

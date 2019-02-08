@@ -19,6 +19,8 @@ double		detection_mur(t_env *env)
 
 	coord_perso.x = env->perso_x; //
 	coord_perso.y = env->perso_y; //
+
+/************* HORIZONTAL **************/
 	init_var_hor(env, &ya, &xa, &coord1);
 	coef_hor(env, &coef_x, &coef_y);
 	while (verif_hor(env, &coord1) == 0)
@@ -28,6 +30,8 @@ double		detection_mur(t_env *env)
 	}
 	d = sqrt(pow(env->perso_x - coord1.x, 2) + pow(env->perso_y - coord1.y, 2));
 	ft_round(&coord1);
+
+/************* VERTICAL **************/
 	init_var_ver(env, &ya, &xa, &coord2);
 	coef_ver(env, &coef_x, &coef_y);
 	while (verif_ver(env, &coord2) == 0)
@@ -36,6 +40,8 @@ double		detection_mur(t_env *env)
 		coord2.y += (ya * coef_y);
 	}
 	ft_round(&coord2);
+
+/************* DISTANCE **************/
 	if (d < sqrt(pow(env->perso_x - coord2.x, 2) + pow(env->perso_y - coord2.y, 2)))
 	{
 		ft_trace_seg(env, coord_perso, coord1); //

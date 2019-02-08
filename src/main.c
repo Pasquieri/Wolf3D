@@ -95,7 +95,6 @@ int			main(int ac, char **av)
 		param_cercle.rayon--;
 	}
 	affichage_mur(&env);
-	//printf("h ou v ? : %f\n",detection_mur(&env));
 	/* ================================================================== */
 	mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);
 	mlx_put_image_to_window(env.mlx, env.win, env.img2, 960, 20); //1000,20
