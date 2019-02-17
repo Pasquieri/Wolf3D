@@ -11,7 +11,7 @@ static int	verif_horizontal(float y2, t_env *env)
 		return (0);
 }
 
-t_coord			intersection_horizontal(t_env *env)
+t_coord			intersection_horizontal(t_env *env) // 31 lignes + 7 variables
 {
 	int		ya;
 	float	x2;
@@ -57,7 +57,7 @@ static int	verif_vertical(float x2, t_env *env)
 		return (0);
 }
 
-t_coord			intersection_vertical(t_env *env)
+t_coord			intersection_vertical(t_env *env) // 31 lignes + 7 variables
 {
 	int		xa;
 	float	x2;
@@ -74,10 +74,9 @@ t_coord			intersection_vertical(t_env *env)
 	coef_x = 1;
 	coef_y = 1;
 	if (env->angle > 90. && env->angle < 270.)
-		coef_x = -1;
+		coef_x = - 1;
 	if  (!(env->angle > 90. && env->angle < 270.))
-		coef_y = -1; //
-//	printf("\nxa : %d, lim : %f, x2 : %f, y2 : %f, coef_x :%d coef_y : %d env->angle : %f env->coef : %d\n", xa,lim, x2, y2, coef_x, coef_y, env->angle, env->coef);
+		coef_y = - 1; //
 	while (xa < env->coef && (x2 < lim && x2 > 0.) && (y2 < lim && y2 > 0.)
 			&& (env->tab[(int)round(y2) 
 				/ env->coef][(int)round(x2) / env->coef]) != 0)
@@ -87,7 +86,6 @@ t_coord			intersection_vertical(t_env *env)
 		if (verif_vertical(x2, env) == 1)
 			xa = env->coef;
 		xa++;
-		printf("x2 : %f, y2 : %f\n", x2, y2);
 	}
 	coord.x = (x2);
 	coord.y = (y2);

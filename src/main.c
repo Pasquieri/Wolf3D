@@ -1,6 +1,6 @@
 #include "../include/wolf3d.h"
 
-static int	deal_key(int key, t_env *env)
+static int	deal_key(int key, t_env *env) // 37 lignes
 {
 	t_cercle	param_cercle;
 
@@ -48,7 +48,7 @@ static int	red_cross(int key)
 	return (0);
 }
 
-int			main(int ac, char **av)
+int			main(int ac, char **av) // 31 - 33 lignes
 {
 	t_env		env;
 	t_cercle	param_cercle;

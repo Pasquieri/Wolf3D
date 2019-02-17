@@ -53,7 +53,6 @@ void	affichage_mur(t_env *env)
 
 	a = env->d_regard + 30;
 	a = verif_angle(a);
-//	printf("angle :%f d_regard : %d\n", a, env->d_regard);
 	x = 0;
 	while (x <= (env->nb_colonne))
 	{

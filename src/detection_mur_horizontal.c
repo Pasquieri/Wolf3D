@@ -40,7 +40,7 @@ int		coef_hor(t_env *env, int *coef_x, int *coef_y)
 	return (0);
 }
 
-int		verif_hor(t_env *env, t_coord *coord)
+int		verif_hor(t_env *env, t_coord *coord) //27 lignes
 {
 	int	i;
 	int	j;
@@ -53,7 +53,6 @@ int		verif_hor(t_env *env, t_coord *coord)
 		coord->y > lim ? coord->y = lim : coord->y;
 		coord->x < 0 ? coord->x = 0 : coord->x;
 		coord->y < 0 ? coord->y = 0 : coord->y;
-	//	printf("hors zone !\n");
 		return (-1);
 	}
 	i = round(coord->x) / env->coef;

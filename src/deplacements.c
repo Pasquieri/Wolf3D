@@ -1,4 +1,6 @@
 #include "../include/wolf3d.h"
+// 6 fonctions
+
 
 static int	check_wall(double xa, double ya, t_env *env)
 {

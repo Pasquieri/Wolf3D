@@ -21,6 +21,12 @@ typedef struct	s_cercle
 	t_coord	coord;
 }				t_cercle;
 
+typedef struct	s_coef
+{
+	int	x;
+	int	y;
+}				t_coef;
+
 typedef struct	s_env
 {
 	void	*mlx;
@@ -51,7 +57,6 @@ typedef struct	s_env
 	int		d_ecran;
 	int		h_mur;
 	int		h_regard;
-	int		key_tab[4][4];
 }				t_env;
 
 int		pars_init(int argc, char **argv, t_env *var_check);
