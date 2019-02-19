@@ -2,7 +2,7 @@
 
 void	init_env(t_env *env)
 {
-	env->d_regard = 342;
+	env->d_regard = 0;
 	env->d_regard = env->d_regard % 360;
 	if (env->d_regard < 0)
 		env->d_regard = env->d_regard + 360;

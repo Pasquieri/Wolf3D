@@ -9,9 +9,9 @@ static int	deal_key(int key, t_env *env) // 37 lignes
 	if (key == 69 ||key == 27 || key == 24 || key == 78 || (key >= 123 && key <= 126) || key == 46)
 	{
 		if (key == 69 || key == 27)
-			env->d_regard++;
+			env->d_regard+= 5;
 		else if (key == 78 || key == 24)
-			env->d_regard--;
+			env->d_regard-= 5;
 		env->d_regard = env->d_regard % 360;
 		if (env->d_regard < 0)
 			env->d_regard = env->d_regard + 360;
