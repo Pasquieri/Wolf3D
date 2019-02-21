@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:49:16 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 17:50:28 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/21 21:13:21 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,33 @@ static int	verif_horizontal(float y2, t_env *env)
 		return (0);
 }
 
-t_coord		intersection_horizontal(t_env *env) // 31 lignes + 7 variables
+t_coord		intersection_horizontal(t_env *env)
 {
 	int		ya;
-	float	x2;
-	float	y2;
 	int		coef_y;
 	int		coef_x;
-	t_coord	coord;
-	float	lim;
+	t_coord	cd;
 
-	lim = env->x * env->coef - (env->coef / 2);
 	ya = 0;
-	x2 = env->perso_x;
-	y2 = env->perso_y;
+	cd.x = env->perso_x;
+	cd.y = env->perso_y;
 	coef_y = 1;
 	coef_x = 1;
 	if (env->angle > 0. && env->angle < 180.)
 		coef_y = -1;
 	if (env->angle > 180. && env->angle < 360.)
 		coef_x = -1;
-	while (ya < env->coef && (x2 < lim && x2 > 0.) && (y2 < lim && y2 > 0.)
-			&& (env->tab[(int)round(y2)
-				/ env->coef][(int)round(x2) / env->coef]) != 0)
+	while (ya < env->coef && (cd.x < env->lim_h && cd.x > 0.)
+			&& (cd.y < env->lim_h && cd.y > 0.) && (env->tab[(int)round(cd.y)
+				/ env->coef][(int)round(cd.x) / env->coef]) != 0)
 	{
-		y2 = y2 + coef_y;
-		x2 = env->perso_x + ((ya * coef_x) / tan(env->angle * M_PI / 180));
-		if (verif_horizontal(y2, env) == 1)
+		cd.y = cd.y + coef_y;
+		cd.x = env->perso_x + ((ya * coef_x) / tan(env->angle * M_PI / 180));
+		if (verif_horizontal(cd.y, env) == 1)
 			ya = env->coef;
 		ya++;
 	}
-	coord.x = (x2);
-	coord.y = (y2);
-	return (coord);
+	return (cd);
 }
 
 static int	verif_vertical(float x2, t_env *env)
@@ -69,37 +63,32 @@ static int	verif_vertical(float x2, t_env *env)
 		return (0);
 }
 
-t_coord		intersection_vertical(t_env *env) // 31 lignes + 7 variables
+t_coord		intersection_vertical(t_env *env)
 {
 	int		xa;
-	float	x2;
-	float	y2;
 	int		coef_x;
 	int		coef_y;
-	t_coord	coord;
-	float	lim;
+	t_coord	cd;
 
 	xa = 0;
-	lim = env->coef * env->x - (env->coef / 2);
-	x2 = env->perso_x;
-	y2 = env->perso_y;
+	cd.x = env->perso_x;
+	cd.y = env->perso_y;
 	coef_x = 1;
 	coef_y = 1;
 	if (env->angle > 90. && env->angle < 270.)
 		coef_x = -1;
 	if (!(env->angle > 90. && env->angle < 270.))
 		coef_y = -1;
-	while (xa < env->coef && (x2 < lim && x2 > 0.) && (y2 < lim && y2 > 0.)
-			&& (env->tab[(int)round(y2)
-				/ env->coef][(int)round(x2) / env->coef]) != 0)
+	while (xa < env->coef && (cd.x < env->lim_v && cd.x > 0.)
+			&& (cd.y < env->lim_v && cd.y > 0.) && (env->tab[(int)round(cd.y)
+				/ env->coef][(int)round(cd.x) / env->coef]) != 0)
 	{
-		x2 = x2 + coef_x;
-		y2 = env->perso_y + ((xa * coef_y) * tan(env->angle * M_PI / 180));
-		if (verif_vertical(x2, env) == 1)
+		cd.x = cd.x + coef_x;
+		cd.y = env->perso_y + ((xa * coef_y) * tan(env->angle * M_PI / 180));
+		if (verif_vertical(cd.x, env) == 1)
 			xa = env->coef;
 		xa++;
 	}
-	coord.x = (x2);
-	coord.y = (y2);
-	return (coord);
+	printf("x2, %f, y2 %f \n",cd.x, cd.y);
+	return (cd);
 }

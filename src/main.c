@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 18:10:36 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/21 20:22:11 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static int	deal_key(int key, t_env *env)
 {
 	if (key == 53)
 		exit(0);
-	if (key == 69 || key == 27 || key == 24 || key == 78
-			|| (key >= 123 && key <= 126) || key == 46)
+	if (key == 69 || key == 27 || key == 24 || key == 78 || key == 46
+		|| (key >= 123 && key <= 126) || (key >= 0 && key <= 2) || key == 13)
 	{
-		if (key == 69 || key == 27 || key == 78 || key == 24)
-			rotation_regard(env, key);
-		else if (key >= 123 && key <= 126)
+		if ((key >= 123 && key <= 126) || (key >= 0 && key <= 2) || key == 13)
 			deplacements(key, env);
+		else if (key == 69 || key == 27 || key == 78 || key == 24)
+			rotation_regard(env, key);
 		clean_img(env);
 		color_case(env);
 		quadrillage(env);
@@ -47,6 +47,32 @@ static int	deal_key(int key, t_env *env)
 		if (env->map_on == 1)
 			mlx_put_image_to_window(env->mlx, env->win, env->img2, 960, 20);
 	}
+	return (0);
+}
+
+static int	motion_notify(int x, int y, t_env *env)
+{
+	if (x > 1200 || x < 0 || y > 870 || y < 0)
+		return (0);
+	if (x > 650)
+		env->d_regard -= 1;
+	else if (x < 550)
+		env->d_regard += 1;
+	if (y < 250 && (env->h_regard < (870 / 2 + 200)))
+		env->h_regard += 2;
+	else if (y > 620 && (env->h_regard > (870 / 2 - 200)))
+		env->h_regard -= 2;
+	env->d_regard = env->d_regard % 360;
+	if (env->d_regard < 0)
+		env->d_regard = env->d_regard + 360;
+	clean_img(env);
+	color_case(env);
+	quadrillage(env);
+	print_cercle(env);
+	affichage_mur(env);
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	if (env->map_on == 1)
+		mlx_put_image_to_window(env->mlx, env->win, env->img2, 960, 20);
 	return (0);
 }
 
@@ -77,6 +103,7 @@ int			main(int ac, char **av)
 	affichage_mur(&env);
 	mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);
 	mlx_put_image_to_window(env.mlx, env.win, env.img2, 960, 20);
+	mlx_hook(env.win, 6, 1L << 13, motion_notify, &env);
 	mlx_hook(env.win, 2, 3, deal_key, &env);
 	mlx_hook(env.win, 17, 3, red_cross, &env);
 	mlx_loop(env.mlx);

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 17:28:04 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/21 21:12:38 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void			affichage_mur(t_env *env)
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
+		printf("angle : %f\n", a);
 		dist = detection_mur(env);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180);
 		h_percue = env->d_ecran * (env->h_mur / dist);
