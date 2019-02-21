@@ -5,7 +5,7 @@ SRC = src/ft_trace_seg.c src/main.c src/put_pxl_img.c src/quadrillage.c\
 	  src/cercle.c src/init_env.c src/intersection.c\
 	  src/detection_mur.c src/clean_img.c src/detection_mur_horizontal.c\
 	  src/detection_mur_vertical.c src/pars_init.c src/affichage_mur.c\
-	  src/deplacements.c
+	  src/deplacements.c src/deplacements_extra.c
 
 HEADER = libft/libft.h include/wolf3d.h
 
@@ -21,7 +21,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	make -C libft
 	make -C minilibx
-	@gcc -g -Wall -Werror -Wextra -I minilibx/ minilibx/libmlx.a \
+	@gcc -Wall -Werror -Wextra -I minilibx/ minilibx/libmlx.a \
 		-framework OpenGL -framework AppKit \
 		$(HEADER) $(SRC) libft/libft.a
 	@mv a.out $(NAME)

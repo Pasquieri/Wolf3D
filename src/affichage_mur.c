@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   affichage_mur.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/02/21 17:28:04 by cpalmier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/wolf3d.h"
 
-static void	affichage(double h_percue, t_env *env, int x)
+static void		affichage(double h_percue, t_env *env, int x)
 {
 	int	y;
 	int	min;
@@ -9,7 +21,7 @@ static void	affichage(double h_percue, t_env *env, int x)
 	min = round(env->h_regard - (h_percue / 2));
 	max = round(env->h_regard + (h_percue / 2));
 	y = 0;
-	while (y < 870) // nb_ligne
+	while (y < 870)
 	{
 		if (y < min)
 		{
@@ -44,7 +56,7 @@ static double	verif_angle(double angle)
 	return (angle);
 }
 
-void	affichage_mur(t_env *env)
+void			affichage_mur(t_env *env)
 {
 	double	a;
 	double	dist;
@@ -59,10 +71,10 @@ void	affichage_mur(t_env *env)
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
 		dist = detection_mur(env);
-		dist = dist * cos((a - env->d_regard) * M_PI / 180); //abs (a -d_regard) ?
-		h_percue = env->d_ecran * (env->h_mur / dist); // 277 * 64 / dist
+		dist = dist * cos((a - env->d_regard) * M_PI / 180);
+		h_percue = env->d_ecran * (env->h_mur / dist);
 		affichage(h_percue, env, x);
-		a = a - (60. / (env->nb_colonne)); // 60 = champ de vision && 320 = nb_colonne
+		a = a - (60. / (env->nb_colonne));
 		x++;
 	}
 }

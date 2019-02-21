@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersection.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/21 17:49:16 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/02/21 17:50:28 by cpalmier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/wolf3d.h"
 
 static int	verif_horizontal(float y2, t_env *env)
@@ -11,7 +23,7 @@ static int	verif_horizontal(float y2, t_env *env)
 		return (0);
 }
 
-t_coord			intersection_horizontal(t_env *env) // 31 lignes + 7 variables
+t_coord		intersection_horizontal(t_env *env) // 31 lignes + 7 variables
 {
 	int		ya;
 	float	x2;
@@ -57,7 +69,7 @@ static int	verif_vertical(float x2, t_env *env)
 		return (0);
 }
 
-t_coord			intersection_vertical(t_env *env) // 31 lignes + 7 variables
+t_coord		intersection_vertical(t_env *env) // 31 lignes + 7 variables
 {
 	int		xa;
 	float	x2;
@@ -74,11 +86,11 @@ t_coord			intersection_vertical(t_env *env) // 31 lignes + 7 variables
 	coef_x = 1;
 	coef_y = 1;
 	if (env->angle > 90. && env->angle < 270.)
-		coef_x = - 1;
-	if  (!(env->angle > 90. && env->angle < 270.))
-		coef_y = - 1; //
+		coef_x = -1;
+	if (!(env->angle > 90. && env->angle < 270.))
+		coef_y = -1;
 	while (xa < env->coef && (x2 < lim && x2 > 0.) && (y2 < lim && y2 > 0.)
-			&& (env->tab[(int)round(y2) 
+			&& (env->tab[(int)round(y2)
 				/ env->coef][(int)round(x2) / env->coef]) != 0)
 	{
 		x2 = x2 + coef_x;

@@ -68,6 +68,7 @@ void	clean_img(t_env *env);
 void	color_case(t_env *env);
 void	color_white(t_env *env);
 void	cercle(t_env *env, t_cercle param);
+void	print_cercle(t_env *env);
 double	detection_mur(t_env *env);
 void	init_var_hor(t_env *env, double *ya, double *xa, t_coord *coord1);
 int		coef_hor(t_env *env, int *coef_x, int *coef_y);
@@ -79,4 +80,7 @@ t_coord	intersection_horizontal(t_env *env);
 t_coord	intersection_vertical(t_env *env);
 void	affichage_mur(t_env *env);
 void	deplacements(int key, t_env *env);
+void	depla_horizontal(t_env *env, int key);
+void	depla_vertical(t_env *env, int key);
+
 #endif

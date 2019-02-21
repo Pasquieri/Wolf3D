@@ -1,6 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   detection_mur_horizontal.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/21 17:45:43 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/02/21 17:47:03 by cpalmier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/wolf3d.h"
 
-void	init_var_hor(t_env *env, double *ya, double *xa, t_coord *coord1)
+static void	init_coord(t_env *env, t_coord *coord, int coef, int cas)
+{
+	int	a;
+
+	a = 0;
+	if (cas == 1)
+	{
+		a = env->perso_x;
+		while ((coef == 1) && (a % env->coef) != 0)
+			a++;
+		while ((coef == -1) && (a % env->coef) != 0)
+			a--;
+		coord->x = a;
+		coord->y = env->perso_y;
+	}
+	else if (cas == 2)
+	{
+		a = env->perso_y;
+		while ((coef == 1) && (a % env->coef) != 0)
+			a++;
+		while ((coef == -1) && (a % env->coef) != 0)
+			a--;
+		coord->x = env->perso_x;
+		coord->y = a;
+	}
+}
+
+void		init_var_hor(t_env *env, double *ya, double *xa, t_coord *coord1)
 {
 	int	coef;
 
@@ -9,17 +48,15 @@ void	init_var_hor(t_env *env, double *ya, double *xa, t_coord *coord1)
 	{
 		*ya = 0;
 		*xa = env->coef;
-		env->angle == 180. ? coef = - 1 : coef;
-		coord1->x = env->perso_x + (env->perso_x % env->coef) * coef;
-		coord1->y = env->perso_y;
+		env->angle == 180. ? coef = -1 : coef;
+		init_coord(env, coord1, coef, 1);
 	}
 	else if (env->angle == 90. || env->angle == 270.)
 	{
 		*ya = env->coef;
 		*xa = 0;
-		env->angle == 90. ? coef = - 1 : coef;
-		coord1->x = env->perso_x;
-		coord1->y = env->perso_y + (env->perso_y % env->coef) * coef;
+		env->angle == 90. ? coef = -1 : coef;
+		init_coord(env, coord1, coef, 2);
 	}
 	else
 	{
@@ -29,7 +66,7 @@ void	init_var_hor(t_env *env, double *ya, double *xa, t_coord *coord1)
 	}
 }
 
-int		coef_hor(t_env *env, int *coef_x, int *coef_y)
+int			coef_hor(t_env *env, int *coef_x, int *coef_y)
 {
 	*coef_x = 1;
 	*coef_y = 1;
@@ -40,7 +77,15 @@ int		coef_hor(t_env *env, int *coef_x, int *coef_y)
 	return (0);
 }
 
-int		verif_hor(t_env *env, t_coord *coord) //27 lignes
+static void	init_coord_lim(t_coord *coord, int lim)
+{
+	coord->x > lim ? coord->x = lim : coord->x;
+	coord->y > lim ? coord->y = lim : coord->y;
+	coord->x < 0 ? coord->x = 0 : coord->x;
+	coord->y < 0 ? coord->y = 0 : coord->y;
+}
+
+int			verif_hor(t_env *env, t_coord *coord)
 {
 	int	i;
 	int	j;
@@ -49,10 +94,7 @@ int		verif_hor(t_env *env, t_coord *coord) //27 lignes
 	lim = env->x * env->coef;
 	if (coord->x > lim || coord->y > lim || coord->x < 0 || coord->y < 0)
 	{
-		coord->x > lim ? coord->x = lim : coord->x;
-		coord->y > lim ? coord->y = lim : coord->y;
-		coord->x < 0 ? coord->x = 0 : coord->x;
-		coord->y < 0 ? coord->y = 0 : coord->y;
+		init_coord_lim(coord, lim);
 		return (-1);
 	}
 	i = round(coord->x) / env->coef;

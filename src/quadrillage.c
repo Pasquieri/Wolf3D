@@ -1,6 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quadrillage.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/21 17:53:44 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/02/21 17:56:42 by cpalmier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/wolf3d.h"
 
-void	quadrillage(t_env *env) // 26 lignes
+static void	init_coord(t_coord *coord1, t_coord *coord3, t_env *env)
+{
+	coord3->x = coord1->x;
+	coord3->y = coord1->y - env->coef;
+}
+
+void		quadrillage(t_env *env)
 {
 	int		i;
 	int		j;
@@ -22,8 +40,7 @@ void	quadrillage(t_env *env) // 26 lignes
 				ft_trace_seg(env, coord1, coord2);
 			if (j > 0)
 			{
-				coord3.x = coord1.x;
-				coord3.y = coord1.y - env->coef;
+				init_coord(&coord1, &coord3, env);
 				ft_trace_seg(env, coord1, coord3);
 			}
 		}
