@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:47:17 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 17:48:19 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 11:32:24 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	init_coord(t_env *env, t_coord *coord, int coef, int cas)
 	}
 }
 
-void		init_var_ver(t_env *env, double *ya, double *xa, t_coord *coord2)
+int			init_var_ver(t_env *env, double *ya, double *xa, t_coord *coord2)
 {
 	int	coef;
 
@@ -62,8 +62,10 @@ void		init_var_ver(t_env *env, double *ya, double *xa, t_coord *coord2)
 	{
 		*xa = env->coef;
 		*ya = env->coef * tan(env->angle * M_PI / 180);
-		*coord2 = intersection_vertical(env);
+		if (intersection_vertical(env, coord2) == 1)
+			return (1);
 	}
+	return (0);
 }
 
 int			coef_ver(t_env *env, int *coef_x, int *coef_y)
@@ -97,16 +99,16 @@ int			verif_ver(t_env *env, t_coord *coord)
 		init_coord_lim(coord, lim);
 		return (-1);
 	}
-	i = round(coord->x) / env->coef;
-	j = round(coord->y) / env->coef;
+	i = (int)(coord->x / env->coef);
+	j = (int)(coord->y / env->coef);
 	if (i < env->x && j < env->x)
 	{
 		if (env->tab[j][i] == 0)
 			return (1);
-		i = round(coord->x + 1) / env->coef;
+		i = ((coord->x) + 1) / env->coef;
 		if (env->tab[j][i] == 0)
 			return (1);
-		i = round(coord->x - 1) / env->coef;
+		i = ((coord->x) - 1) / env->coef;
 		if (env->tab[j][i] == 0)
 			return (1);
 	}

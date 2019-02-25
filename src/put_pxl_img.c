@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:51:35 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 17:53:34 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/23 18:54:54 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,30 @@ static void	win_img(t_env *env, int x, int y, int color)
 		env->img_str[i + 1] = (char)145;
 		env->img_str[i + 2] = (char)190;
 	}
+	else if (color == 8) // rouge
+	{
+		env->img_str[i] = (char)0;
+		env->img_str[i + 1] = (char)0;
+		env->img_str[i + 2] = (char)255;
+	}
+	else if (color == 9) // vert
+	{
+		env->img_str[i] = (char)0;
+		env->img_str[i + 1] = (char)255;
+		env->img_str[i + 2] = (char)0;
+	}
+	else if (color == 10) // bleu
+	{
+		env->img_str[i] = (char)255;
+		env->img_str[i + 1] = (char)0;
+		env->img_str[i + 2] = (char)0;
+	}
+	else if (color == 11) // jaune
+	{
+		env->img_str[i] = (char)0;
+		env->img_str[i + 1] = (char)255;
+		env->img_str[i + 2] = (char)255;
+	}
 }
 
 static void	map_img(t_env *env, int x, int y, int color)
@@ -59,6 +83,18 @@ static void	map_img(t_env *env, int x, int y, int color)
 		env->img_str2[i] = (char)159;
 		env->img_str2[i + 1] = (char)161;
 		env->img_str2[i + 2] = (char)255;
+	}
+	else if (color == 4) // rouge
+	{
+		env->img_str2[i] = (char)0;
+		env->img_str2[i + 1] = (char)0;
+		env->img_str2[i + 2] = (char)255;
+	}
+	else if (color == 2) // bleu
+	{
+		env->img_str2[i] = (char)255;
+		env->img_str2[i + 1] = (char)0;
+		env->img_str2[i + 2] = (char)0;
 	}
 }
 

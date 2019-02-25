@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 21:12:38 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 11:50:50 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,31 @@
 
 static void		affichage(double h_percue, t_env *env, int x)
 {
-	int	y;
-	int	min;
-	int	max;
+	float	y;
+	float	min;
+	float	max;
 
-	min = round(env->h_regard - (h_percue / 2));
-	max = round(env->h_regard + (h_percue / 2));
-	y = 0;
-	while (y < 870)
+	min = (env->h_regard - (h_percue / 2));
+	max = (env->h_regard + (h_percue / 2));
+	y = -1.;
+	while (++y < min && y < 870.)
+		put_pxl_img(env, x, y, 6);
+	y--;
+	while (++y <= max && y < 870.)
 	{
-		if (y < min)
-		{
-			put_pxl_img(env, x, y, 6);
-		}
-		else if (y > max)
-		{
-			put_pxl_img(env, x, y, 7);
-		}
+		/*if (env->angle >= 45. && env->angle < 135.)
+			put_pxl_img(env, x, y, 8);
+		else if (env->angle >= 135. && env->angle < 225.)
+			put_pxl_img(env, x, y, 9);
+		else if (env->angle >= 225. && env->angle < 315.)
+			put_pxl_img(env, x, y, 10);
 		else
-		{
-			put_pxl_img(env, x, y, 5);
-		}
-		y++;
+			put_pxl_img(env, x, y, 11);*/
+		put_pxl_img(env, x, y, 5);
 	}
+	y--;
+	while (++y < 870.)
+		put_pxl_img(env, x, y, 7);
 }
 
 static double	verif_angle(double angle)
@@ -70,12 +72,11 @@ void			affichage_mur(t_env *env)
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);
-		printf("angle : %f\n", a);
 		dist = detection_mur(env);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180);
 		h_percue = env->d_ecran * (env->h_mur / dist);
 		affichage(h_percue, env, x);
-		a = a - (60. / (env->nb_colonne));
+		a -= (60. / (env->nb_colonne));
 		x++;
 	}
 }

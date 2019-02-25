@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 20:22:11 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 12:02:21 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 static void	rotation_regard(t_env *env, int key)
 {
 	if (key == 69 || key == 27)
-		env->d_regard += 5;
+		env->d_regard += 1;
 	else if (key == 78 || key == 24)
+		env->d_regard -= 1;
+	if (key == 123)
+		env->d_regard += 5;
+	else if (key == 124)
 		env->d_regard -= 5;
+	else if (key == 125 && env->h_regard > (870 / 2 - 200))
+		env->h_regard -= 7;
+	else if (key == 126 && env->h_regard < (870 / 2 + 200))
+		env->h_regard += 7;
 	env->d_regard = env->d_regard % 360;
 	if (env->d_regard < 0)
 		env->d_regard = env->d_regard + 360;
@@ -30,9 +38,10 @@ static int	deal_key(int key, t_env *env)
 	if (key == 69 || key == 27 || key == 24 || key == 78 || key == 46
 		|| (key >= 123 && key <= 126) || (key >= 0 && key <= 2) || key == 13)
 	{
-		if ((key >= 123 && key <= 126) || (key >= 0 && key <= 2) || key == 13)
+		if ((key >= 0 && key <= 2) || key == 13)
 			deplacements(key, env);
-		else if (key == 69 || key == 27 || key == 78 || key == 24)
+		else if (key == 69 || key == 27 || key == 78 || key == 24
+				|| (key >= 123 && key <= 126))
 			rotation_regard(env, key);
 		clean_img(env);
 		color_case(env);
@@ -89,7 +98,8 @@ int			main(int ac, char **av)
 
 	if (pars_init(ac, av, &env) == -1)
 		return (0);
-	env.mlx = mlx_init();
+	if (!(env.mlx = mlx_init()))
+		return (-1);
 	env.win = mlx_new_window(env.mlx, 1200, 870, "Wolf3D");
 	env.img = mlx_new_image(env.mlx, 1200, 870);
 	env.img_str = mlx_get_data_addr(env.img, &env.bpp, &env.s_l, &env.end);

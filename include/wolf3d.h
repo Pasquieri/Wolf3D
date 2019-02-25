@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 20:32:35 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/23 16:02:15 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,10 @@ typedef struct	s_env
 	int		perso_x;
 	int		perso_y;
 	int		nb_colonne;
-	int		d_ecran;
+	float	d_ecran;
 	int		h_mur;
 	int		h_regard;
-	float	lim_h;
-	float	lim_v;
+	float	lim;
 }				t_env;
 
 int				pars_init(int argc, char **argv, t_env *var_check);
@@ -84,14 +83,14 @@ void			color_white(t_env *env);
 void			cercle(t_env *env, t_cercle param);
 void			print_cercle(t_env *env);
 double			detection_mur(t_env *env);
-void			init_var_hor(t_env *env, double *ya, double *xa, t_coord *c1);
+int				init_var_hor(t_env *env, double *ya, double *xa, t_coord *c1);
 int				coef_hor(t_env *env, int *coef_x, int *coef_y);
 int				verif_hor(t_env *env, t_coord *coord);
-void			init_var_ver(t_env *env, double *ya, double *xa, t_coord *c2);
+int				init_var_ver(t_env *env, double *ya, double *xa, t_coord *c2);
 int				coef_ver(t_env *env, int *coef_x, int *coef_y);
 int				verif_ver(t_env *env, t_coord *coord);
-t_coord			intersection_horizontal(t_env *env);
-t_coord			intersection_vertical(t_env *env);
+int				intersection_horizontal(t_env *env, t_coord *cd);
+int				intersection_vertical(t_env *env, t_coord *cd);
 void			affichage_mur(t_env *env);
 void			deplacements(int key, t_env *env);
 void			depla_horizontal(t_env *env, int key);

@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/21 17:43:53 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 11:54:52 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 	perso.y = env->perso_y;
 	dist1 = sqrt(pow(perso.x - coord1.x, 2) + pow(perso.y - coord1.y, 2));
 	dist2 = sqrt(pow(perso.x - coord2.x, 2) + pow(perso.y - coord2.y, 2));
-	ft_round(&coord1);
-	ft_round(&coord2);
 	if (dist1 < dist2)
 	{
+		ft_round(&coord1);
 		ft_trace_seg(env, perso, coord1);
 		return (dist1);
 	}
 	else
 	{
+		ft_round(&coord2);
 		ft_trace_seg(env, perso, coord2);
 		return (dist2);
 	}
