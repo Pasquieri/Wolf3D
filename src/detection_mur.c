@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/25 11:54:52 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:28:15 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,20 @@ static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 	dist2 = sqrt(pow(perso.x - coord2.x, 2) + pow(perso.y - coord2.y, 2));
 	if (dist1 < dist2)
 	{
+		env->mur = coord1;
+		//env->mur.x = coord1.x;
+		//env->mur.y = coord1.y;
+		printf("mur hor : x : %f, y : %f\nperso : x : %d, y : %d\n\n", coord1.x, coord1.y, env->perso_x, env->perso_y);
 		ft_round(&coord1);
 		ft_trace_seg(env, perso, coord1);
 		return (dist1);
 	}
 	else
 	{
+		env->mur = coord2;
+		//env->mur.x = coord2.x;
+		//env->mur.y = coord2.y;
+		printf("mur ver : x : %f, y : %f\nperso : x : %d, y : %d\n\n", coord2.x, coord2.y, env->perso_x, env->perso_y);
 		ft_round(&coord2);
 		ft_trace_seg(env, perso, coord2);
 		return (dist2);

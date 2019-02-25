@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/25 11:50:50 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 14:20:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static void		affichage(double h_percue, t_env *env, int x)
 	y--;
 	while (++y <= max && y < 870.)
 	{
-		/*if (env->angle >= 45. && env->angle < 135.)
-			put_pxl_img(env, x, y, 8);
-		else if (env->angle >= 135. && env->angle < 225.)
+		if ((((int)(env->mur.x * 1000) % (env->coef * 1000)) == 0) && (env->mur.x > env->perso_x))
+			put_pxl_img(env, x, y, 11);
+		else if ((((int)(env->mur.x * 1000) % (env->coef * 1000)) == 0) && (env->mur.x < env->perso_x))
 			put_pxl_img(env, x, y, 9);
-		else if (env->angle >= 225. && env->angle < 315.)
-			put_pxl_img(env, x, y, 10);
+		else if ((((int)(env->mur.y * 1000) % (env->coef * 1000)) == 0) && (env->mur.y < env->perso_y))
+			put_pxl_img(env, x, y, 8);
 		else
-			put_pxl_img(env, x, y, 11);*/
-		put_pxl_img(env, x, y, 5);
+			put_pxl_img(env, x, y, 10);
+//		put_pxl_img(env, x, y, 5);
 	}
 	y--;
 	while (++y < 870.)
@@ -68,7 +68,7 @@ void			affichage_mur(t_env *env)
 	a = env->d_regard + 30;
 	a = verif_angle(a);
 	x = 0;
-	while (x <= (env->nb_colonne))
+	while (x < (env->nb_colonne))
 	{
 		env->angle = a;
 		env->angle = verif_angle(env->angle);

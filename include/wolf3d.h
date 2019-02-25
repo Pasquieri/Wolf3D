@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/23 16:02:15 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:23:42 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct	s_env
 	int		h_mur;
 	int		h_regard;
 	float	lim;
+	t_coord	mur;
 }				t_env;
 
 int				pars_init(int argc, char **argv, t_env *var_check);

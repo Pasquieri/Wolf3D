@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/25 12:02:21 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/25 13:04:21 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static int	deal_key(int key, t_env *env)
 				|| (key >= 123 && key <= 126))
 			rotation_regard(env, key);
 		clean_img(env);
+		affichage_mur(env);
 		color_case(env);
 		quadrillage(env);
 		print_cercle(env);
-		affichage_mur(env);
 		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 		if (key == 46 && env->map_on == 1)
 			env->map_on = 0;
@@ -75,10 +75,10 @@ static int	motion_notify(int x, int y, t_env *env)
 	if (env->d_regard < 0)
 		env->d_regard = env->d_regard + 360;
 	clean_img(env);
+	affichage_mur(env);
 	color_case(env);
 	quadrillage(env);
 	print_cercle(env);
-	affichage_mur(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	if (env->map_on == 1)
 		mlx_put_image_to_window(env->mlx, env->win, env->img2, 960, 20);
