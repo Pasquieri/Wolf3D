@@ -41,6 +41,9 @@ typedef struct	s_coef
 
 typedef struct	s_env
 {
+	void	*imgmenu;
+	char	*imgmenu_str;
+
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -63,6 +66,7 @@ typedef struct	s_env
 
 	int		d_regard;
 	double	angle;
+	int		detail;
 	int		perso_x;
 	int		perso_y;
 	int		nb_colonne;
@@ -73,6 +77,7 @@ typedef struct	s_env
 	t_coord	mur;
 }				t_env;
 
+void			open_menu(t_env *env);
 int				pars_init(int argc, char **argv, t_env *var_check);
 void			init_env(t_env *env);
 int				ft_trace_seg(t_env *env, t_coord coord1, t_coord coord2);

@@ -33,6 +33,7 @@ static void	rotation_regard(t_env *env, int key)
 
 static int	deal_key(int key, t_env *env)
 {
+	open_menu(env);
 	if (key == 53)
 		exit(0);
 	if (key == 69 || key == 27 || key == 24 || key == 78 || key == 46
@@ -97,25 +98,39 @@ int			main(int ac, char **av)
 	t_env		env;
 
 	if (pars_init(ac, av, &env) == -1)
+	{
 		return (0);
+	}
+	
 	if (!(env.mlx = mlx_init()))
 		return (-1);
+
 	env.win = mlx_new_window(env.mlx, 1200, 870, "Wolf3D");
+
+	env.imgmenu = mlx_new_image(env.mlx, 1200, 870);
+
 	env.img = mlx_new_image(env.mlx, 1200, 870);
 	env.img_str = mlx_get_data_addr(env.img, &env.bpp, &env.s_l, &env.end);
 	env.img2 = mlx_new_image(env.mlx, 200, 200);
 	env.img_str2 = mlx_get_data_addr(env.img2, &env.bpp2, &env.s_l2, &env.end2);
 	env.coef = 400 / (env.x + env.y);
+	
 	init_env(&env);
 	color_case(&env);
 	quadrillage(&env);
 	print_cercle(&env);
 	affichage_mur(&env);
-	mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);
-	mlx_put_image_to_window(env.mlx, env.win, env.img2, 960, 20);
+
+	mlx_put_image_to_window(env.mlx, env.win, env.imgmenu, 0, 0);
+	open_menu(&env);
+	//mlx_put_image_to_window(env.mlx, env.win, env.img, 0, 0);
+	//mlx_put_image_to_window(env.mlx, env.win, env.img2, 960, 20);
+
+
 	mlx_hook(env.win, 6, 1L << 13, motion_notify, &env);
 	mlx_hook(env.win, 2, 3, deal_key, &env);
 	mlx_hook(env.win, 17, 3, red_cross, &env);
-	mlx_loop(env.mlx);
+	mlx_loop
+	(env.mlx);
 	return (0);
 }
