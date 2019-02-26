@@ -69,6 +69,8 @@ typedef struct	s_env
 	int		detail;
 	int		perso_x;
 	int		perso_y;
+	int		menu;
+	int 	menu_select;
 	int		nb_colonne;
 	float	d_ecran;
 	int		h_mur;
