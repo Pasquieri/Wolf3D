@@ -5,92 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/04 17:36:28 by cpalmier          #+#    #+#             */
-/*   Updated: 2018/01/31 18:24:25 by cpalmier         ###   ########.fr       */
+/*   Created: 2018/05/07 17:04:32 by cpalmier          #+#    #+#             */
+/*   Updated: 2019/02/26 16:54:17 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	fill_next_line(char **next_line, char *buff)
+static void	gnl_reader(t_gnlstore *store, int fd)
 {
-	int		i;
-	int		j;
-	char	*tmp;
-
-	i = 0;
-	j = 0;
-	while (buff[i] != '\n' && buff[i])
-		i++;
-	if (!(tmp = (char *)malloc(sizeof(char) * (ft_strlen(buff) - i + 1))))
-		return ;
-	while (buff[++i])
-		tmp[j++] = buff[i];
-	tmp[j] = '\0';
-	if (*next_line)
-		free(*next_line);
-	*next_line = ft_strdup(tmp);
-	free(tmp);
+	if (store->cache[fd] == NULL)
+		store->cache[fd] = ft_strnew(1);
+	while (!(ft_strchr(store->cache[fd], '\n')) &&
+		(store->read_bytes = read(fd, store->buff, BUFF_SIZE)) > 0)
+	{
+		store->buff[store->read_bytes] = '\0';
+		store->tmp = store->cache[fd];
+		store->cache[fd] = ft_strjoin(store->cache[fd], store->buff);
+		ft_strdel(&store->tmp);
+	}
+	ft_strdel(&store->buff);
 }
 
-void	fill_line(char **line, char *buff)
+int			get_next_line(int const fd, char **line)
 {
-	char	*tmp;
-	size_t	len;
+	static t_gnlstore	store;
 
-	if (*line)
-	{
-		tmp = ft_strjoin(*line, buff);
-		free(*line);
-	}
-	else
-		tmp = ft_strdup(buff);
-	len = ft_strlen(tmp) - ft_strlen(ft_strchr(tmp, '\n'));
-	*line = ft_strsub(tmp, 0, len);
-	free(tmp);
-}
-
-int		check_next_line(char **next_line, char **line)
-{
-	if (*next_line && ft_strchr(*next_line, '\n'))
-	{
-		fill_line(line, *next_line);
-		fill_next_line(next_line, *next_line);
-		return (1);
-	}
-	if (*next_line && !ft_strchr(*next_line, '\n'))
-	{
-		fill_line(line, *next_line);
-		*next_line = NULL;
-		return (0);
-	}
-	return (0);
-}
-
-int		get_next_line(const int fd, char **line)
-{
-	int			ret;
-	char		buff[BUFF_SIZE + 1];
-	static char	*next_line;
-
-	if (fd < 0 || !line)
+	if (fd < 0 || fd > MAX_FD || line == NULL || BUFF_SIZE <= 0
+			|| (BUFF_SIZE) > (MAX_INT)
+			|| !(store.buff = (char *)ft_memalloc(BUFF_SIZE + 1)))
 		return (-1);
-	*line = NULL;
-	if ((ret = check_next_line(&next_line, line) == 1))
-		return (1);
-	while ((ret = read(fd, buff, BUFF_SIZE)))
+	gnl_reader(&store, fd);
+	if (store.read_bytes == -1)
+		return (-1);
+	*line = ft_strsub(store.cache[fd], 0, ft_strlenre(store.cache[fd], '\n'));
+	if (ft_strchr(store.cache[fd], '\n'))
 	{
-		if (ret < 0)
-			return (-1);
-		buff[ret] = '\0';
-		fill_line(line, buff);
-		if (ft_strchr(buff, '\n'))
-		{
-			fill_next_line(&next_line, buff);
-			return (1);
-		}
-	}
-	if (ret == 0 && ft_strlen(*line) > 0)
+		store.tmp = store.cache[fd];
+		store.cache[fd] = ft_strdup(ft_strchr(store.cache[fd], '\n') + 1);
+		ft_strdel(&store.tmp);
 		return (1);
+	}
+	if (ft_strlenre(store.cache[fd], '\n') > 0)
+	{
+		store.cache[fd] = store.cache[fd] + ft_strlenre(store.cache[fd], '\n');
+		return (1);
+	}
 	return (0);
 }
+
+/*int	 main(int argc, char **argv)
+{
+	int		fd;
+	char	*line;
+
+	if (argc != 2)
+		return (0);
+	if (!(fd = open(argv[1], O_RDONLY)))
+		return (0);
+	line = NULL;
+	while (get_next_line(fd, &line) == 1)
+	{
+		ft_putstr(line);
+		ft_putchar('\n');
+	}
+	free(line);
+	line = NULL;
+	while (1) {};
+	return (0);
+}*/

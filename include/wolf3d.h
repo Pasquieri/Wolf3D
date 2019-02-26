@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/25 13:23:42 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:06:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct	s_env
 	int		h_mur;
 	int		h_regard;
 	float	lim;
-	t_coord	mur;
+	int		orientation;
 }				t_env;
 
 void			open_menu(t_env *env);

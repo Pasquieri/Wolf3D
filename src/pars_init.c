@@ -10,21 +10,21 @@ static int	error_message(int num, t_env *env) //Cette fonction affiche les messa
 		else if (num == 2)
 			ft_putstr("Ouverture de la map impossible");
 		else if (num == 3)
-			ft_putstr("Le malloc a merder");
+			ft_putstr("Erreur de malloc");
 		else if (num == 4)
-			ft_putstr("Le nombre de collones (y) indiquer sont incorrect");
+			ft_putstr("Le nombre de colonnes (y) indique est incorrect");
 		else if (num == 5)
-			ft_putstr("Le nombre de lignes (x) indiquer sont incorrect");
+			ft_putstr("Le nombre de lignes (x) indique est incorrect");
 		else if (num == 6)
-			ft_putstr("La premiere ligne de la map n'est pas sous la forme XX;");
+			ft_putstr("La premiere ligne de la map doit etre \"player : (X,X);\"");
 		else if (num == 7)
-			ft_putstr("Un des characteres de la map est incompatible");
+			ft_putstr("Un des caracteres de la map est incompatible");
 		else if (num == 8)
 			ft_putstr("Le nombre de caracteres n'est pas le meme pour toutes les lignes");
 		else if (num == 9)
 			ft_putstr("Le nombre de x et de y indique est trop elevee (10000 max)");
 		else if (num == 10)
-			ft_putstr("Le nombre indiquer est egal a zero ou n'existe pas");
+			ft_putstr("Le nombre indique est egal a zero ou n'existe pas");
 		else if (num == 11)
 			ft_putstr("La map n'a pas de case vide");
 		else if (num == 12)
@@ -32,9 +32,9 @@ static int	error_message(int num, t_env *env) //Cette fonction affiche les messa
 		else if (num == 13)
 			ft_putstr("La map est vide");
 		else if (num == 14)
-			ft_putstr("Les coordonnee du player ne sont pas valide");
+			ft_putstr("Les coordonnees du player ne sont pas valides");
 		else if (num == 15)
-			ft_putstr("Le joueurs est pose dans un mur");
+			ft_putstr("Le joueur est place dans un mur");
 	}
 	else if (env->detail == 0)
 		ft_putstr("map invalide");
@@ -44,8 +44,8 @@ static int	error_message(int num, t_env *env) //Cette fonction affiche les messa
 
 static int	verif_char(char *str, t_env *env) //verif que *str cest bien composer de char valides
 {
-	int x;
-	char nombre[3];
+	int		x;
+	char	nombre[3];
 
 	nombre[2] = '\0';
 	x = 0;
@@ -127,6 +127,7 @@ static int	fill_tab(int fd, t_env *env)
 	int		i;
 	int		j;
 	int		nb_sol;
+	int		k;
 
 	nb_sol = 0;
 	i = 0;
@@ -151,6 +152,12 @@ static int	fill_tab(int fd, t_env *env)
 				return (error_message(14, env));
 			if (tmp[env->perso_x][0] == '0')
 				return (error_message(15, env));
+			k = tablen(tmp);
+			while (k >= 0)
+			{
+				free(tmp[k]);
+				k--;
+			}
 			free(tmp);
 		}
 			nb_sol += compte_char(line, '0');
@@ -168,11 +175,13 @@ static int	fill_tab(int fd, t_env *env)
 			free(tmp[j]);
 			j++;
 		}
-
+		free(tmp);
 		i++;
 		if (i == env->y)
 			if (wall_line(line, env) == -1)
 				return (-1);
+		free(line);
+		line = NULL;
 	}
 	if (env->perso_y >= i)
 		return (error_message(14, env));
@@ -265,6 +274,7 @@ static int	check_file(int	fd, t_env *env)
 	env->perso_y = recup_info_player(line1, 'y');
 	if (env->perso_x != -1 && env->perso_y != -1)
 	{
+		free(line1);
 		if (get_next_line(fd, &line1) != 1)
 			return (error_message(13, env));
 	}

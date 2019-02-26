@@ -6,35 +6,36 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/25 14:20:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/26 15:27:51 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf3d.h"
 
-static void		affichage(double h_percue, t_env *env, int x)
+static void		affichage(double h_percue, t_env *env, int x, float a)
 {
 	float	y;
-	float	min;
-	float	max;
+	float	lim;
 
-	min = (env->h_regard - (h_percue / 2));
-	max = (env->h_regard + (h_percue / 2));
+	lim = (env->h_regard - (h_percue / 2));
 	y = -1.;
-	while (++y < min && y < 870.)
+	while (++y < lim && y < 870.)
 		put_pxl_img(env, x, y, 6);
 	y--;
-	while (++y <= max && y < 870.)
+	lim = (env->h_regard + (h_percue / 2));
+	if (env->orientation == 1)
 	{
-		if ((((int)(env->mur.x * 1000) % (env->coef * 1000)) == 0) && (env->mur.x > env->perso_x))
+		while (a >= 0. && a < 180. && ++y <= lim && y < 870.)
 			put_pxl_img(env, x, y, 11);
-		else if ((((int)(env->mur.x * 1000) % (env->coef * 1000)) == 0) && (env->mur.x < env->perso_x))
+		while (!(a >= 0. && a < 180.) && ++y <= lim && y < 870.)
 			put_pxl_img(env, x, y, 9);
-		else if ((((int)(env->mur.y * 1000) % (env->coef * 1000)) == 0) && (env->mur.y < env->perso_y))
+	}
+	else if (env->orientation == 2)
+	{
+		while (a >= 90. && a < 270. && ++y <= lim && y < 870.)
 			put_pxl_img(env, x, y, 8);
-		else
+		while (!(a >= 90. && a < 270.) && ++y <= lim && y < 870.)
 			put_pxl_img(env, x, y, 10);
-//		put_pxl_img(env, x, y, 5);
 	}
 	y--;
 	while (++y < 870.)
@@ -75,7 +76,7 @@ void			affichage_mur(t_env *env)
 		dist = detection_mur(env);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180);
 		h_percue = env->d_ecran * (env->h_mur / dist);
-		affichage(h_percue, env, x);
+		affichage(h_percue, env, x, env->angle);
 		a -= (60. / (env->nb_colonne));
 		x++;
 	}

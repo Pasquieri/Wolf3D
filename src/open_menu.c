@@ -29,10 +29,10 @@ void	open_menu(t_env *env)
 	mlx_string_put(env->mlx, env->win, 530, 330, white_color,
 			"-- WOLF3D --");
 
-	mlx_string_put(env->mlx, env->win, 570, 530, play_color,
+	mlx_string_put(env->mlx, env->win, 565, 530, play_color,
 			"Jouer");
 
-	mlx_string_put(env->mlx, env->win, 570, 630, exit_color,
+	mlx_string_put(env->mlx, env->win, 560, 630, exit_color,
 			"Quitter");
 
 }
