@@ -79,6 +79,18 @@ typedef struct	s_env
 	int		orientation;
 }				t_env;
 
+int				check_open_map(char *map, int fd, t_env *env);
+int				check_file(int	fd, t_env *env);
+int				recup_info_player(char *str, char c);
+int				verif_valeur(char *str, t_env *env);
+int				malloc_tab(t_env *env);
+int				fill_tab(int fd, t_env *env);
+int				tablen(char **str);
+int				wall_line(char *str, t_env *env);
+int				wall_row(char *str, int nb_char, t_env *env);
+int				compte_char(char *str, char c);
+int				verif_char(char *str, t_env *env);
+int 			error_message(int num, t_env *env);
 void			open_menu(t_env *env);
 int				pars_init(int argc, char **argv, t_env *var_check);
 void			init_env(t_env *env);
