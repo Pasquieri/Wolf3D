@@ -21,7 +21,7 @@ void	open_menu(t_env *env)
 	if (env->menu_select == 1)
 	{
 		play_color = white_color;
-		exit_color = red_color;
+		exit_color = blue_color;
 	}
 
 	mlx_put_image_to_window(env->mlx, env->win, env->imgmenu, 0, 0);
@@ -29,7 +29,7 @@ void	open_menu(t_env *env)
 	mlx_string_put(env->mlx, env->win, 530, 330, white_color,
 			"-- WOLF3D --");
 
-	mlx_string_put(env->mlx, env->win, 565, 530, play_color,
+	mlx_string_put(env->mlx, env->win, 560, 530, play_color,
 			"Jouer");
 
 	mlx_string_put(env->mlx, env->win, 560, 630, exit_color,
