@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/26 15:06:59 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:32:18 by mpasquie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct	s_coord
 {
 	float	x;
 	float	y;
-	float	z;
 }				t_coord;
 
 typedef struct	s_cercle
@@ -39,10 +38,23 @@ typedef struct	s_coef
 	int		y;
 }				t_coef;
 
+typedef struct 	s_color_menu
+{
+	int 	blue_color;
+ 	int 	white_color;
+	int 	green_color;
+
+	int 	play_color;
+	int 	exit_color;
+	int 	map1_color;
+	int 	map2_color;
+	int 	map3_color;	
+}				t_color_menu;
+
 typedef struct	s_env
 {
 	void	*imgmenu;
-	char	*imgmenu_str;
+//	char	*imgmenu_str;
 
 	void	*mlx;
 	void	*win;
@@ -60,17 +72,20 @@ typedef struct	s_env
 	int		coef;
 	int		map_on;
 
-	int		x;
+	int		x; //remplcer les y par x car meme valeur
 	int		y;
 	int		**tab;
 
 	int		d_regard;
 	double	angle;
 	int		detail;
-	int		perso_x;
+	int		x_init; // valeur initiale de perso_x et perso_y ==> cases
+	int		y_init;
+	int		perso_x; // modifier dans init env 
 	int		perso_y;
 	int		menu;
 	int 	menu_select;
+	int 	map_entree;
 	int		nb_colonne;
 	float	d_ecran;
 	int		h_mur;
@@ -79,6 +94,7 @@ typedef struct	s_env
 	int		orientation;
 }				t_env;
 
+int				re_pars(char *str, t_env *env);
 int				check_open_map(char *map, int fd, t_env *env);
 int				check_file(int	fd, t_env *env);
 int				recup_info_player(char *str, char c);

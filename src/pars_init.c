@@ -21,6 +21,7 @@ int		pars_init(int argc, char **argv, t_env *env)
 		return (-1);
 	if (check_file(fd, env) == -1)
 		return (-1);
+	env->map_entree = 0;
 	return (0);
 }
 
