@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:43:51 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/26 15:15:41 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/28 20:52:59 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 	if (dist1 < dist2)
 	{
 		env->orientation = 1;
+		env->coord_mur = coord1;
 		ft_round(&coord1);
 		ft_trace_seg(env, perso, coord1);
 		return (dist1);
@@ -38,6 +39,7 @@ static double	ft_distance(t_coord coord1, t_coord coord2, t_env *env)
 	else
 	{
 		env->orientation = 2;
+		env->coord_mur = coord2;
 		ft_round(&coord2);
 		ft_trace_seg(env, perso, coord2);
 		return (dist2);

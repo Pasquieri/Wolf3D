@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:13:49 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/28 15:32:18 by mpasquie         ###   ########.fr       */
+/*   Updated: 2019/02/28 18:49:45 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ typedef struct	s_coef
 	int		y;
 }				t_coef;
 
-typedef struct 	s_color_menu
+typedef struct	s_color_menu
 {
 	int 	blue_color;
- 	int 	white_color;
+	int 	white_color;
 	int 	green_color;
 
 	int 	play_color;
@@ -51,10 +51,21 @@ typedef struct 	s_color_menu
 	int 	map3_color;	
 }				t_color_menu;
 
+typedef struct	s_text
+{
+	void	*img;
+	char	*img_str;
+	int		bpp;
+	int		s_l;
+	int		end;
+	int		width;
+	int		height;
+}				t_text;
+
 typedef struct	s_env
 {
 	void	*imgmenu;
-//	char	*imgmenu_str;
+	//	char	*imgmenu_str;
 
 	void	*mlx;
 	void	*win;
@@ -92,6 +103,14 @@ typedef struct	s_env
 	int		h_regard;
 	float	lim;
 	int		orientation;
+	t_coord	coord_mur;
+
+	int		img_x;
+
+	t_text	texture1;
+	t_text	texture2;
+	t_text	texture3;
+	t_text	texture4;
 }				t_env;
 
 int				re_pars(char *str, t_env *env);
@@ -131,5 +150,5 @@ void			affichage_mur(t_env *env);
 void			deplacements(int key, t_env *env);
 void			depla_horizontal(t_env *env, int key);
 void			depla_vertical(t_env *env, int key);
-
+void			put_texture_img(t_env *env, double h_per, int y, t_text *text);
 #endif

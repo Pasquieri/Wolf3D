@@ -6,7 +6,7 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:57:03 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/25 13:04:21 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/28 21:19:41 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static int	deal_key(int key, t_env *env)
 {
 	if (key == 53)
 		exit(0);
-		//123-124-125-126 Arrow / 48 Tab / 49 Space
+	//123-124-125-126 Arrow / 48 Tab / 49 Space
 	if (key == 69 || key == 27 || key == 24 || key == 78 || key == 46 || key == 49
-		|| (key >= 123 && key <= 126) || (key >= 0 && key <= 2) || key == 13)
+			|| (key >= 123 && key <= 126) || (key >= 0 && key <= 2) || key == 13)
 	{
 		if (key == 49 && !env->menu) 
 		{
@@ -117,7 +117,7 @@ static int	deal_key(int key, t_env *env)
 		else if (((key >= 0 && key <= 2) || key == 13) && !env->menu)
 			deplacements(key, env);
 		else if ((key == 69 || key == 27 || key == 78 || key == 24
-				|| (key >= 123 && key <= 126)) && !env->menu)
+					|| (key >= 123 && key <= 126)) && !env->menu)
 			rotation_regard(env, key);
 
 		else if (key >= 123 && key <= 126 && env->menu == 1)
@@ -132,7 +132,7 @@ static int	deal_key(int key, t_env *env)
 				env->menu_select = 5;
 			open_menu(env);
 		}
-		
+
 		if (!env->menu)
 		{
 			clean_img(env);
@@ -197,6 +197,14 @@ static int 	win_init(t_env *env)
 	env->img_str = mlx_get_data_addr(env->img, &env->bpp, &env->s_l, &env->end);
 	env->img2 = mlx_new_image(env->mlx, 200, 200);
 	env->img_str2 = mlx_get_data_addr(env->img2, &env->bpp2, &env->s_l2, &env->end2);
+	env->texture1.img = mlx_xpm_file_to_image(env->mlx, "textures/marbre_blanc.XPM", &env->texture1.width, &env->texture1.height);
+	env->texture1.img_str = mlx_get_data_addr(env->texture1.img, &env->texture1.bpp, &env->texture1.s_l, &env->texture1.end);
+	env->texture2.img = mlx_xpm_file_to_image(env->mlx, "textures/plante.XPM", &env->texture2.width, &env->texture2.height);
+	env->texture2.img_str = mlx_get_data_addr(env->texture2.img, &env->texture2.bpp, &env->texture2.s_l, &env->texture2.end);
+	env->texture3.img = mlx_xpm_file_to_image(env->mlx, "textures/planche_bois.XPM", &env->texture3.width, &env->texture3.height);
+	env->texture3.img_str = mlx_get_data_addr(env->texture3.img, &env->texture3.bpp, &env->texture3.s_l, &env->texture3.end);
+	env->texture4.img = mlx_xpm_file_to_image(env->mlx, "textures/carrelage_noir.XPM", &env->texture4.width, &env->texture4.height);
+	env->texture4.img_str = mlx_get_data_addr(env->texture4.img, &env->texture4.bpp, &env->texture4.s_l, &env->texture4.end);
 	return (0);
 }
 
@@ -205,11 +213,11 @@ int			main(int ac, char **av)
 	t_env		env;
 
 	if (win_init(&env) == -1)
-		return (0);	
+		return (0);
 
 	env.map_entree = -1;
 	env.menu = 0;
-	
+
 	if (pars_init(ac, av, &env) == 0)
 		exec_calcul(&env);
 

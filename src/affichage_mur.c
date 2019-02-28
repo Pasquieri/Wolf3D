@@ -6,38 +6,46 @@
 /*   By: cpalmier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 17:27:02 by cpalmier          #+#    #+#             */
-/*   Updated: 2019/02/26 15:27:51 by cpalmier         ###   ########.fr       */
+/*   Updated: 2019/02/28 21:28:16 by cpalmier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/wolf3d.h"
+
+static int		affichage_ciel(double h_percue, t_env *env, int x)
+{
+	float	y;
+	float	lim;
+
+	y = -1;
+	lim = (env->h_regard - (h_percue / 2));
+	while (++y < lim && y < 870.)
+		put_pxl_img(env, x, y, 6);
+	return (y - 1);
+}
 
 static void		affichage(double h_percue, t_env *env, int x, float a)
 {
 	float	y;
 	float	lim;
 
-	lim = (env->h_regard - (h_percue / 2));
-	y = -1.;
-	while (++y < lim && y < 870.)
-		put_pxl_img(env, x, y, 6);
-	y--;
+	y = affichage_ciel(h_percue, env, x);
 	lim = (env->h_regard + (h_percue / 2));
 	if (env->orientation == 1)
 	{
-		while (a >= 0. && a < 180. && ++y <= lim && y < 870.)
-			put_pxl_img(env, x, y, 11);
-		while (!(a >= 0. && a < 180.) && ++y <= lim && y < 870.)
-			put_pxl_img(env, x, y, 9);
+		while (a >= 0. && a < 180. && ++y < lim && y < 870.)
+			put_texture_img(env, h_percue, y, &env->texture1);
+		while (!(a >= 0. && a < 180.) && ++y < lim && y < 870.)
+			put_texture_img(env, h_percue, y, &env->texture2);
 	}
 	else if (env->orientation == 2)
 	{
-		while (a >= 90. && a < 270. && ++y <= lim && y < 870.)
-			put_pxl_img(env, x, y, 8);
-		while (!(a >= 90. && a < 270.) && ++y <= lim && y < 870.)
-			put_pxl_img(env, x, y, 10);
+		while (a >= 90. && a < 270. && ++y < lim && y < 870.)
+			put_texture_img(env, h_percue, y, &env->texture3);
+		while (!(a >= 90. && a < 270.) && ++y < lim && y < 870.)
+			put_texture_img(env, h_percue, y, &env->texture4);
 	}
-	y--;
+	y -= 2;
 	while (++y < 870.)
 		put_pxl_img(env, x, y, 7);
 }
@@ -76,6 +84,7 @@ void			affichage_mur(t_env *env)
 		dist = detection_mur(env);
 		dist = dist * cos((a - env->d_regard) * M_PI / 180);
 		h_percue = env->d_ecran * (env->h_mur / dist);
+		env->img_x = x;
 		affichage(h_percue, env, x, env->angle);
 		a -= (60. / (env->nb_colonne));
 		x++;
